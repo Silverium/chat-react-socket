@@ -9,7 +9,7 @@
   "private": false,
   "scripts": {
     "build": "webpack --config webpack.config.js --mode production",
-    "lint": "standard src/**/*.tsx src/**/*.ts src/**/*.jsx src/**/*.js",
+    "lint": "standard src/**/*.tsx src/**/*.ts src/**/*.jsx src/**/*.js ./index.tsx  --env jest",
     "start": "webpack-dev-server --hot --open",
     "test": "jest"
   },
