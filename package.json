@@ -9,7 +9,14 @@
   "private": false,
   "scripts": {
     "start": "webpack-dev-server --hot --open",
-    "build": "webpack --config webpack.config.js --mode production"
+    "build": "webpack --config webpack.config.js --mode production",
+    "lint": "standard src/**/*.tsx src/**/*.ts src/**/*.jsx src/**/*.js"
+  },
+  "standard": {
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint/eslint-plugin"
+    ]
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
@@ -17,6 +24,8 @@
     "@babel/preset-react": "^7.9.4",
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
+    "@typescript-eslint/eslint-plugin": "^2.34.0",
+    "@typescript-eslint/parser": "^2.34.0",
     "babel-loader": "^8.1.0",
     "css-loader": "^3.5.3",
     "file-loader": "^6.0.0",
@@ -24,6 +33,7 @@
     "node-sass": "^4.14.1",
     "sass-loader": "^8.0.2",
     "source-map-loader": "^0.2.4",
+    "standard": "^14.3.4",
     "style-loader": "^1.2.1",
     "ts-loader": "^7.0.4",
     "typescript": "^3.9.3",
