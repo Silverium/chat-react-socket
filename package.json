@@ -1,0 +1,38 @@
+{
+  "name": "chat-react-socket",
+  "version": "1.0.0",
+  "description": "Basic Chat app build with React and Socket.io",
+  "main": "index.tsx",
+  "repository": "https://github.com/Silverium/chat-react-socket.git",
+  "author": "soldeplatadeveloper@gmail.com",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "webpack-dev-server --hot --open",
+    "build": "webpack --config webpack.config.js --mode production"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/preset-react": "^7.9.4",
+    "@types/react": "^16.9.35",
+    "@types/react-dom": "^16.9.8",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^3.5.3",
+    "file-loader": "^6.0.0",
+    "html-webpack-plugin": "^4.3.0",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^8.0.2",
+    "source-map-loader": "^0.2.4",
+    "style-loader": "^1.2.1",
+    "ts-loader": "^7.0.4",
+    "typescript": "^3.9.3",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
