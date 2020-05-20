@@ -5,10 +5,9 @@
   "transform": {
     "^.+\\.tsx?$": "ts-jest"
   },
-  "setupFilesAfterEnv": ["<rootDir>/setupEnzyme.js"],
-  "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
+  "setupFilesAfterEnv": ["<rootDir>/test/setup.ts"],
+  "moduleFileExtensions": ["ts", "tsx", "js", "json", "node"],
   "moduleNameMapper": {
-      "^.+\\.(css|less|scss)$": "babel-jest",
-      "^.+\\.(jpg|png|gif|svg)$": "identity-obj-proxy"
+      "^.+\\.(css|less|scss)$": "babel-jest"
     }
 }
