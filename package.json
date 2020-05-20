@@ -13,6 +13,9 @@
     "start": "webpack-dev-server --hot --open",
     "test": "jest"
   },
+  "pre-commit": [
+    "lint"
+  ],
   "standard": {
     "parser": "@typescript-eslint/parser",
     "plugins": [
@@ -38,6 +41,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.0.1",
     "node-sass": "^4.14.1",
+    "pre-commit": "^1.2.2",
     "sass-loader": "^8.0.2",
     "source-map-loader": "^0.2.4",
     "standard": "^14.3.4",
