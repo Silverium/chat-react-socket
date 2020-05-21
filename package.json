@@ -18,6 +18,7 @@
   ],
   "standard": {
     "parser": "@typescript-eslint/parser",
+    "env": "jest",
     "plugins": [
       "@typescript-eslint/eslint-plugin"
     ]
@@ -25,6 +26,7 @@
   "devDependencies": {
     "@types/enzyme": "^3.10.5",
     "@types/jest": "^25.2.3",
+    "@types/lodash-es": "^4.17.3",
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
     "@typescript-eslint/eslint-plugin": "^2.34.0",
@@ -36,6 +38,7 @@
     "html-webpack-plugin": "^4.3.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.0.1",
+    "lodash": "^4.17.15",
     "node-sass": "^4.14.1",
     "pre-commit": "^1.2.2",
     "sass-loader": "^8.0.2",
@@ -52,6 +55,7 @@
   "dependencies": {
     "i18next": "^19.4.4",
     "i18next-xhr-backend": "^3.2.2",
+    "lodash-es": "^4.17.15",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-i18next": "^11.4.0"

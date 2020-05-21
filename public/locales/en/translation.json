@@ -1,5 +1,6 @@
 {
-  "welcome": "hello everybody",
   "en": "English",
-  "es": "Spanish"
+  "es": "Spanish",
+  "language": "language",
+  "welcome": "hello everybody"
 }

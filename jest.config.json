@@ -1,13 +1,14 @@
 {
-  "roots": [
-    "<rootDir>/src"
-  ],
+  "roots": ["<rootDir>/src"],
+  "preset": "ts-jest",
   "transform": {
     "^.+\\.tsx?$": "ts-jest"
   },
+  "transformIgnorePatterns": ["<rootDir>/node_modules/(?!lodash-es/.*)"],
   "setupFilesAfterEnv": ["<rootDir>/test/setup.ts"],
   "moduleFileExtensions": ["ts", "tsx", "js", "json", "node"],
   "moduleNameMapper": {
-    "^.+\\.scss$": "identity-obj-proxy"
+    "^.+\\.scss$": "identity-obj-proxy",
+    "^lodash-es": "<rootDir>/node_modules/lodash/index.js"
   }
 }
