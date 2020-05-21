@@ -8,6 +8,6 @@
   "setupFilesAfterEnv": ["<rootDir>/test/setup.ts"],
   "moduleFileExtensions": ["ts", "tsx", "js", "json", "node"],
   "moduleNameMapper": {
-      "^.+\\.(css|less|scss)$": "babel-jest"
-    }
+    "^.+\\.scss$": "identity-obj-proxy"
+  }
 }
