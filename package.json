@@ -1,7 +1,7 @@
 {
   "name": "chat-react-socket",
   "version": "1.0.0",
-  "description": "Basic Chat app build with React and Socket.io",
+  "description": "Basic Chat app built with React and Socket.io",
   "main": "index.tsx",
   "repository": "https://github.com/Silverium/chat-react-socket.git",
   "author": "soldeplatadeveloper@gmail.com",

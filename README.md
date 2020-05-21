@@ -44,7 +44,7 @@ Built in a node.js server with socket.io implementing a frontend in React 16.
 - [ ] Settings - clock format 24 or 12h
 - [ ] Settings - send messages on CTRL+ENTER
 - [ ] Settings - reset to defaults button
-- [ ] Settings - stored in local storage
+- [x] Settings - stored in local storage
 
 ## Optional features
 
@@ -53,11 +53,11 @@ Built in a node.js server with socket.io implementing a frontend in React 16.
 - [ ] Chat box - link parser => images
 - [ ] Chat box - link parser => generic links
 - [ ] Chat tab - unread messages count
-- [ ] Settings - language
-- [ ] Settings - language
+- [x] Settings - language selection
 
 ## Steps taken to create this app
 
 - Init git project
 - Create dummy app following [this article](https://medium.com/@tim.givois.mendez/create-a-react-project-from-scratch-without-create-react-app-f02fce4e05b)
 - Add i18n following the criteria of Robin Wieruch in [this article](https://www.robinwieruch.de/react-internationalization)
+- Add local storage save inspired by Robin Wieruch in [this article](https://www.robinwieruch.de/local-storage-react)

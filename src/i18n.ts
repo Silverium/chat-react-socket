@@ -1,3 +1,4 @@
+/* global localStorage */
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 
@@ -9,7 +10,7 @@ i18n
   .init({
     debug: true,
 
-    lng: 'en',
+    lng: localStorage.getItem('language') || 'en',
     fallbackLng: 'en',
     whitelist: ['en', 'es'],
 

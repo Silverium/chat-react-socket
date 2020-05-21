@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useTranslation } from 'react-i18next'
 import upperFirst from 'lodash-es/upperFirst'
+
+import { useLocal } from '../../effects/useLocal'
 interface SettingsProps {
   language?: string
 }
-const Settings: React.FunctionComponent<SettingsProps> = ({ language = 'en' }) => {
-  const [lang, setLang] = useState(language)
+const Settings: React.FunctionComponent<SettingsProps> = () => {
+  const [lang, setLang] = useLocal.bind(this)('language')
   const { t, i18n } = useTranslation()
   const changeLanguage = (code: string) => {
     setLang(code)
