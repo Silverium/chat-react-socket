@@ -1,8 +1,10 @@
 /* global localStorage */
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
-
 import Backend from 'i18next-xhr-backend'
+import { settings } from './constants'
+
+const { LANGUAGE } = settings
 
 i18n
   .use(Backend)
@@ -10,7 +12,7 @@ i18n
   .init({
     debug: true,
 
-    lng: localStorage.getItem('language') || 'en',
+    lng: localStorage.getItem(LANGUAGE) || 'en',
     fallbackLng: 'en',
     whitelist: ['en', 'es'],
 
