@@ -1,3 +1,4 @@
 export const settings = {
-  LANGUAGE: 'language'
+  LANGUAGE: 'language',
+  THEME: 'theme'
 }

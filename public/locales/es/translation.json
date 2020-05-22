@@ -1,6 +1,9 @@
 {
   "en": "inglés",
+  "dark": "oscuro",
   "es": "español",
+  "interfaceTheme": "Tema de la interfaz",
   "language": "idioma",
+  "light": "claro",
   "welcome": "Hola a todos"
 }

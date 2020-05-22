@@ -2,21 +2,22 @@ import React from 'react'
 
 import { useLocal } from '../../effects/useLocal'
 
-interface SelectSettingOption {
+export interface SelectSettingOption {
   value: string;
   text: string;
 }
-interface SelectSettingProps{
+export interface SelectSettingProps{
   storageKey: string;
   label: string;
-  onChange: (value: string)=> void;
+  onChange?: (value: string)=> void;
   options: SelectSettingOption[];
 }
+
 const SelectSetting: React.FunctionComponent<SelectSettingProps> = ({ label, storageKey, options, onChange }) => {
   const [settingValue, updateValue] = useLocal.bind(this)(storageKey)
   const updateSetting = (inputValue: string) => {
     updateValue(inputValue)
-    onChange(inputValue)
+    if (onChange)onChange(inputValue)
   }
 
   return (
