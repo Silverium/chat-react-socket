@@ -2,6 +2,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import upperFirst from 'lodash-es/upperFirst'
 
+import { ThemeContext } from '../../context/theme'
 import { settings } from '../../constants'
 import SelectSetting from '../../components/SelectSetting'
 const { LANGUAGE, THEME } = settings
@@ -29,7 +30,12 @@ const Settings: React.FunctionComponent<{}> = () => {
 
   return (
     <div className='settings'>
-      <SelectSetting {...selectThemeProps} />
+      <ThemeContext.Consumer>{
+        ({ updateTheme }) => (
+          <SelectSetting {...selectThemeProps} onChange={updateTheme} />
+        )
+      }
+      </ThemeContext.Consumer>
       <SelectSetting {...selectLanguageProps} />
     </div>
   )
