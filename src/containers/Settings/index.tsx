@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next'
 import upperFirst from 'lodash-es/upperFirst'
 
 import { SettingsContext } from '../../context/settings'
-import { settings, themes, languages } from '../../constants'
+import { settings, themes, languages, timeFormats } from '../../constants'
 import SelectSetting from '../../components/SelectSetting'
-const { LANGUAGE, THEME } = settings
+const { LANGUAGE, THEME, TIME_FORMAT } = settings
 
 const Settings: React.FunctionComponent<{}> = () => {
   const { t, i18n } = useTranslation()
@@ -27,16 +27,26 @@ const Settings: React.FunctionComponent<{}> = () => {
       text: upperFirst(t(value))
     }))
   }
+  const selectTimeFormatProps = {
+    storageKey: TIME_FORMAT,
+    label: upperFirst(t('clockDisplay')),
+    options: timeFormats.map(value => ({
+      value,
+      text: upperFirst(t(value))
+    }))
+  }
 
   return (
-    <div className='settings'>
-      <SettingsContext.Consumer>
-        {({ updateSetting }) => (
-          <SelectSetting {...selectThemeProps} onChange={(value) => updateSetting(THEME, value)} />
-        )}
-      </SettingsContext.Consumer>
-      <SelectSetting {...selectLanguageProps} />
-    </div>
+    <SettingsContext.Consumer>
+      {({ theme,timeFormat, updateSettings, resetSettings }) => (
+        <div className='settings'>
+          <SelectSetting {...selectTimeFormatProps} value={timeFormat} onChange={(value) => updateSettings[TIME_FORMAT](value)} />
+          <SelectSetting {...selectThemeProps} value={theme} onChange={(value) => updateSettings[THEME](value)} />
+          <SelectSetting {...selectLanguageProps} />
+          <button onClick={resetSettings}>Reset</button>
+        </div>
+      )}
+    </SettingsContext.Consumer>
   )
 }
 

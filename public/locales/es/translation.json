@@ -1,4 +1,7 @@
 {
+  "12h": "12 horas",
+  "24h": "24 horas",
+  "clockDisplay": "formato de la hora",
   "en": "inglés",
   "dark": "oscuro",
   "es": "español",

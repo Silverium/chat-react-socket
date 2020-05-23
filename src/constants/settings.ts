@@ -20,7 +20,7 @@ export const themes = Object.keys(themeDefinitions)
 
 export const languages = ['en', 'es']
 
-export const timeFormats = ['12', '24']
+export const timeFormats = ['12h', '24h']
 
 export const availableSettings = {
   [settings.LANGUAGE]: languages,

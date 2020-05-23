@@ -8,6 +8,7 @@ body {
 .container {
     align-items: center;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     padding-top: 10px;
     width: 100%;
