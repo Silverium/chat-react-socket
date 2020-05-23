@@ -2,8 +2,8 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import upperFirst from 'lodash-es/upperFirst'
 
-import { ThemeContext } from '../../context/theme'
-import { settings } from '../../constants'
+import { SettingsContext } from '../../context/settings'
+import { settings, themes, languages } from '../../constants'
 import SelectSetting from '../../components/SelectSetting'
 const { LANGUAGE, THEME } = settings
 
@@ -14,7 +14,7 @@ const Settings: React.FunctionComponent<{}> = () => {
     storageKey: LANGUAGE,
     label: upperFirst(t('language')),
     onChange: (code: string) => i18n.changeLanguage(code),
-    options: ['en', 'es'].map(value => ({
+    options: languages.map(value => ({
       value,
       text: upperFirst(t(value))
     }))
@@ -22,7 +22,7 @@ const Settings: React.FunctionComponent<{}> = () => {
   const selectThemeProps = {
     storageKey: THEME,
     label: upperFirst(t('interfaceTheme')),
-    options: ['light', 'dark'].map(value => ({
+    options: themes.map(value => ({
       value,
       text: upperFirst(t(value))
     }))
@@ -30,12 +30,11 @@ const Settings: React.FunctionComponent<{}> = () => {
 
   return (
     <div className='settings'>
-      <ThemeContext.Consumer>{
-        ({ updateTheme }) => (
-          <SelectSetting {...selectThemeProps} onChange={updateTheme} />
-        )
-      }
-      </ThemeContext.Consumer>
+      <SettingsContext.Consumer>
+        {({ updateSetting }) => (
+          <SelectSetting {...selectThemeProps} onChange={(value) => updateSetting(THEME, value)} />
+        )}
+      </SettingsContext.Consumer>
       <SelectSetting {...selectLanguageProps} />
     </div>
   )

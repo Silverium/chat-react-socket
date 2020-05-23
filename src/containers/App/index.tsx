@@ -2,23 +2,28 @@
 import React from 'react'
 import './App.scss'
 import Settings from '../Settings'
-import { ThemeContext, themes } from '../../context/theme'
+import { SettingsContext } from '../../context/settings'
+import { defaultSettings, themeDefinitions } from '../../constants/'
 export interface themeProps {
   foreground: string;
   background: string;
 }
 const App: React.FunctionComponent<{}> = () => {
   // we don't use "effects/useLocal" here, we don't want to save it twice
-  const themeStored = localStorage.getItem('theme') || 'light'
-  const [theme, setTheme] = React.useState(themeStored)
-  const selectedTheme = (themes as {[key: string]:themeProps})[theme]
+  const allSettings = Object.entries(defaultSettings).reduce((acc: any, [key, value]) => {
+    acc[key] = localStorage.getItem(key) || value
+    return acc
+  }, {})
+  const [settings, setSettings] = React.useState(allSettings)
+  const selectedTheme = (themeDefinitions as { [key: string]: themeProps })[settings.theme]
   return (
-    <ThemeContext.Provider value={{ theme, updateTheme: (newTheme: string) => { setTheme(newTheme) } }}>
+    <SettingsContext.Provider value={{ ...settings, updateSetting: (key: string, value: string) => { setSettings({ ...settings, [key]: value }) } }}>
+
       <div className='container'>
-        theme is {theme} {selectedTheme.background}
+        theme is {settings.theme} {selectedTheme.background}
         <Settings />
       </div>
-    </ThemeContext.Provider>
+    </SettingsContext.Provider>
   )
 }
 
