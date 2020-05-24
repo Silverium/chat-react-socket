@@ -7,7 +7,7 @@ import './App.scss'
 import { useLocal } from '../../effects/useLocal'
 import Settings from '../Settings'
 import { SettingsContext } from '../../context/settings'
-import { defaultSettings, themeDefinitions, settings as settingsConst } from '../../constants/'
+import { defaultSettings, settings as settingsConst } from '../../constants/'
 export interface themeProps {
   foreground: string;
   background: string;
@@ -24,7 +24,6 @@ const App: React.FunctionComponent<{}> = () => {
     }
   })
   const { i18n } = useTranslation()
-    const selectedTheme = (themeDefinitions as { [key: string]: themeProps })[settings.theme]
   const resetSettings = () => {
     each(defaultSettings, (value: string, key: string) => {
       updateSettings[key](value)
@@ -33,11 +32,9 @@ const App: React.FunctionComponent<{}> = () => {
   }
   return (
     <SettingsContext.Provider value={{ settings, updateSettings, resetSettings }}>
-
-      <div className='container'>
-        theme is {settings.theme} {selectedTheme.background} {settings.timeFormat}
+      <section className={`container h-100 themes-${settings.theme}`}>
         <Settings />
-      </div>
+      </section>
     </SettingsContext.Provider>
   )
 }

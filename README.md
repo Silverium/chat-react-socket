@@ -40,7 +40,7 @@ Built in a node.js server with socket.io implementing a frontend in React 16.
 - [ ] Chat input - box in the bottom of page with a text input and a send button
 - [ ] Chat tab - blinks when user is in other tab and receives messages
 - [ ] Settings - user name
-- [ ] Settings - theme light or dark
+- [x] Settings - theme light or dark
 - [ ] Settings - clock format 24 or 12h
 - [ ] Settings - send messages on CTRL+ENTER
 - [x] Settings - reset to defaults button

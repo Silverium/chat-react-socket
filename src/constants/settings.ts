@@ -6,17 +6,7 @@ export const settings = {
   USER_NAME: 'userName'
 }
 
-export const themeDefinitions = {
-  light: {
-    foreground: '#000000',
-    background: '#eeeeee'
-  },
-  dark: {
-    foreground: '#ffffff',
-    background: '#222222'
-  }
-}
-export const themes = Object.keys(themeDefinitions)
+export const themes = ['light', 'dark']
 
 export const languages = ['en', 'es']
 
