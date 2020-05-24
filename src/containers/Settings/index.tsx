@@ -43,7 +43,7 @@ const Settings: React.FunctionComponent<{}> = () => {
           <SelectSetting {...selectTimeFormatProps} value={settings[TIME_FORMAT]} onChange={(value) => updateSettings[TIME_FORMAT](value)} />
           <SelectSetting {...selectThemeProps} value={settings[THEME]} onChange={(value) => updateSettings[THEME](value)} />
           <SelectSetting value={settings[LANGUAGE]} {...selectLanguageProps} />
-          <button onClick={resetSettings}>Reset</button>
+      <button onClick={resetSettings}>{upperFirst(t('reset'))}</button>
         </div>
       )}
     </SettingsContext.Consumer>
