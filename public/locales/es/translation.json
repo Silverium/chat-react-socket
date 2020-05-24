@@ -1,6 +1,7 @@
 {
   "12h": "12 horas",
   "24h": "24 horas",
+  "chat": "chat",
   "clockDisplay": "formato de la hora",
   "en": "inglés",
   "dark": "oscuro",
@@ -9,5 +10,6 @@
   "language": "idioma",
   "light": "claro",
   "reset": "restablecer",
+  "settings": "ajustes",
   "welcome": "Hola a todos"
 }
