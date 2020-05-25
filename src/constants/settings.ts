@@ -27,3 +27,7 @@ export const defaultSettings = Object.entries(availableSettings).reduce(
   },
   {} as any
 )
+
+export const getTimeFormatter = (hour12:boolean) => {
+  return new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12 })
+}

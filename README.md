@@ -29,6 +29,10 @@ Built in a node.js server with socket.io implementing a frontend in React 16.
   ```bash
   yarn start
   ```
+  and in another shell:
+  ```bash
+  yarn server
+  ```
 
 ## Features required by this exercise
 
