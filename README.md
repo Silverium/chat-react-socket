@@ -39,13 +39,13 @@ Built in a node.js server with socket.io implementing a frontend in React 16.
 - [ ] Chat - message box
 - [ ] Chat box - sent messages floating right
 - [ ] Chat box - received messages floating left
-- [ ] Messages - contains date
-- [ ] Messages received - contains user name
-- [ ] Chat input - box in the bottom of page with a text input and a send button
+- [x] Messages - contains date
+- [x] Messages received - contains user name
+- [x] Chat input - box in the bottom of page with a text input and a send button
 - [ ] Chat tab - blinks when user is in other tab and receives messages
-- [ ] Settings - user name
+- [x] Settings - user name
 - [x] Settings - theme light or dark
-- [ ] Settings - clock format 24 or 12h
+- [x] Settings - clock format 24 or 12h
 - [ ] Settings - send messages on CTRL+ENTER
 - [x] Settings - reset to defaults button
 - [x] Settings - stored in local storage
