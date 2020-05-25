@@ -7,14 +7,13 @@ export const settings = {
 }
 
 export const themes = ['light', 'dark']
-
 export const languages = ['en', 'es']
-
 export const timeFormats = ['12h', '24h']
+export const sendEnterOptions = ['true', 'false']
 
 export const availableSettings = {
   [settings.LANGUAGE]: languages,
-  [settings.SEND_ENTER]: ['true', 'false'],
+  [settings.SEND_ENTER]: sendEnterOptions,
   [settings.THEME]: themes,
   [settings.TIME_FORMAT]: timeFormats,
   [settings.USER_NAME]: ''
@@ -27,6 +26,6 @@ export const defaultSettings = Object.entries(availableSettings).reduce(
   },
   {} as any
 )
-
+// TODO: find a good place for getTimeFormatter
 export const getTimeFormatter = (hour12:string) =>
   new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: hour12 === '12h' }).format

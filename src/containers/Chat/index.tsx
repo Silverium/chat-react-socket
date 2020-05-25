@@ -2,7 +2,7 @@ import React from 'react'
 
 import { useChatMessage, SocketMessage, sendMessage, useChatHistory } from '../../effects/Chat' // eslint-disable-line no-unused-vars
 import { SettingsContext } from '../../context/settings'
-
+import { settings as settingsConst } from '../../constants/'
 const Chat: React.FunctionComponent<{}> = () => {
   const [messagesList, setMessagesList] = React.useState([])
   useChatHistory((history) => {
@@ -16,7 +16,15 @@ const Chat: React.FunctionComponent<{}> = () => {
   useChatMessage((msgProps: SocketMessage) => {
     setMessagesList(messagesList.concat(msgProps))
   })
-
+  const { settings } = React.useContext(SettingsContext)
+  const onKeyPress = (event: React.KeyboardEvent) => {
+    const { key, ctrlKey } = event
+    const userName = settings[settingsConst.USER_NAME]
+    const isCtrlEnterActivated = settings[settingsConst.SEND_ENTER] === 'true'
+    if (isCtrlEnterActivated && key === 'Enter' && ctrlKey) send({ msg, userName })
+  }
+  // TODO: extract messages section with  ul/li formatting
+  // TODO: transform and extract "send" section into a small form
   return (
     <SettingsContext.Consumer>
       {({ settings, timeFormatter }) => (
@@ -27,7 +35,7 @@ const Chat: React.FunctionComponent<{}> = () => {
               <p> {msg}</p>
             </div>
           ))}
-          <input type='text' value={msg} name='msg' onChange={(event) => setMsg(event.currentTarget.value)} />
+          <textarea value={msg} name='msg' {...{ onKeyPress }} onChange={(event) => setMsg(event.currentTarget.value)} />
           <button onClick={() => send({ msg, userName: settings.userName })}>Send Message!</button>
         </section>
       )}

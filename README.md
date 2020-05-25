@@ -46,7 +46,7 @@ Built in a node.js server with socket.io implementing a frontend in React 16.
 - [x] Settings - user name
 - [x] Settings - theme light or dark
 - [x] Settings - clock format 24 or 12h
-- [ ] Settings - send messages on CTRL+ENTER
+- [x] Settings - send messages on CTRL+ENTER
 - [x] Settings - reset to defaults button
 - [x] Settings - stored in local storage
 
