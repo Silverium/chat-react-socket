@@ -17,7 +17,7 @@ export const availableSettings = {
   [settings.SEND_ENTER]: ['true', 'false'],
   [settings.THEME]: themes,
   [settings.TIME_FORMAT]: timeFormats,
-  [settings.USER_NAME]: ['Me']
+  [settings.USER_NAME]: ''
 }
 
 export const defaultSettings = Object.entries(availableSettings).reduce(

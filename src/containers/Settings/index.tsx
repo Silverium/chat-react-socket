@@ -5,7 +5,7 @@ import upperFirst from 'lodash-es/upperFirst'
 import { SettingsContext } from '../../context/settings'
 import { settings, themes, languages, timeFormats } from '../../constants'
 import SelectSetting from '../../components/SelectSetting'
-const { LANGUAGE, THEME, TIME_FORMAT } = settings
+const { LANGUAGE, THEME, TIME_FORMAT, USER_NAME } = settings
 
 const Settings: React.FunctionComponent<{}> = () => {
   const { t, i18n } = useTranslation()
@@ -40,9 +40,10 @@ const Settings: React.FunctionComponent<{}> = () => {
     <SettingsContext.Consumer>
       {({ settings, updateSettings, resetSettings }) => (
         <div className='settings'>
+          <input type='text' value={settings[USER_NAME]} onChange={(event) => updateSettings[USER_NAME](event.currentTarget.value)} />
           <SelectSetting {...selectTimeFormatProps} value={settings[TIME_FORMAT]} onChange={(value) => updateSettings[TIME_FORMAT](value)} />
           <SelectSetting {...selectThemeProps} value={settings[THEME]} onChange={(value) => updateSettings[THEME](value)} />
-          <SelectSetting value={settings[LANGUAGE]} {...selectLanguageProps} />
+          <SelectSetting {...selectLanguageProps} value={settings[LANGUAGE]} />
           <button onClick={resetSettings}>{upperFirst(t('reset'))}</button>
         </div>
       )}
