@@ -12,12 +12,13 @@ export interface SocketMessage {
 socket.on(eventNames.CLIENTS_CONNECTED, console.log)
 
 export const useChatHistory = (callback: (payload: SocketMessage[]) => void) => {
-  socket.emit(eventNames.CHAT_HISTORY)
   React.useEffect(() => {
+    socket.emit(eventNames.CHAT_HISTORY)
     socket.on(eventNames.CHAT_HISTORY, callback)
 
     return () => socket.off(eventNames.CHAT_HISTORY)
-  })
+  },
+  [])
 }
 export const useChatMessage = (callback: (payload: SocketMessage) => void) => {
   React.useEffect(() => {

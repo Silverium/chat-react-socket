@@ -33,8 +33,6 @@ export const onMessage = (client: Socket, io: Server) => (msg: string) => {
   io.emit(eventNames.MESSAGE, msgProps)
 }
 export const onChatHistory = (client: Socket) => () => {
-  console.info('\x1b[36m%s\x1b[0m', 'history retrieved') // cyan comment
-
   client.emit(eventNames.CHAT_HISTORY, chatHistory)
 }
 io.on('connection', function (client: Socket) {
@@ -54,5 +52,5 @@ io.on('connection', function (client: Socket) {
 })
 
 server.listen(3000, () => {
-  console.info('\x1b[43m\x1b[30m%s\x1b[0m', 'listening on port 3000') // Black over Yellow comment
+  console.info('\x1b[40m\x1b[32m%s\x1b[0m', 'listening on port 3000') // Green over Black comment
 })
