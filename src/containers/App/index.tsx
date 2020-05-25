@@ -13,11 +13,11 @@ export interface themeProps {
   foreground: string;
   background: string;
 }
-const App: React.FunctionComponent<{}> = () => {
+const App: React.FunctionComponent<{}> = function () {
   const updateSettings: { [key: string]: React.Dispatch<React.SetStateAction<string>> } = {}
   const settings: { [key: string]: string } = {}
   each(defaultSettings, (_value: string, key: string) => {
-    const [settingValue, updateValue] = useLocal.bind(this)(key)
+    const [settingValue, updateValue] = useLocal(key)
     settings[key] = settingValue
     updateSettings[key] = (toUpdate: string) => {
       settings[key] = toUpdate
@@ -33,9 +33,9 @@ const App: React.FunctionComponent<{}> = () => {
   }
 
   const [selected, setSelected] = React.useState(appTabs[0].name)
-  const APP_CONTENT : {[key: string]: JSX.Element} = {
+  const APP_CONTENT: { [key: string]: JSX.Element } = {
     settings: <Settings />,
-    chat: <Chat>Chat tab</Chat>
+    chat: <Chat />
   }
   return (
     <SettingsContext.Provider value={{ settings, updateSettings, resetSettings }}>
