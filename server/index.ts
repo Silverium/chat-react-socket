@@ -27,10 +27,10 @@ export const onSetName = (client: Socket, io: Server) => (name:string) => {
   user.name = name
   io.emit(eventNames.CLIENTS_CONNECTED, Array.from(connectedClients.entries()))
 }
-export const onMessage = (client: Socket, io: Server) => (msg: string) => {
-  const msgProps = { id: client.id, msg, timestamp: Date.now() }
-  chatHistory.push(msgProps)
-  io.emit(eventNames.MESSAGE, msgProps)
+export const onMessage = (client: Socket, io: Server) => (msgProps:{msg: string; userName:string}) => {
+  const msgObject = { id: client.id, ...msgProps, timestamp: Date.now() }
+  chatHistory.push(msgObject)
+  io.emit(eventNames.MESSAGE, msgObject)
 }
 export const onChatHistory = (client: Socket) => () => {
   client.emit(eventNames.CHAT_HISTORY, chatHistory)

@@ -7,7 +7,8 @@ const socket = io.connect('http://localhost:3000')
 export interface SocketMessage {
   id: string;
   msg: string;
-  timestamp: number;
+  userName?: string;
+  timestamp?: number;
 }
 socket.on(eventNames.CLIENTS_CONNECTED, console.log)
 
@@ -27,6 +28,6 @@ export const useChatMessage = (callback: (payload: SocketMessage) => void) => {
     return () => socket.off(eventNames.MESSAGE)
   })
 }
-export const sendMessage = (msg: string) => {
-  socket.emit(eventNames.MESSAGE, msg)
+export const sendMessage = (msgProps:{msg: string; userName:string}) => {
+  socket.emit(eventNames.MESSAGE, msgProps)
 }

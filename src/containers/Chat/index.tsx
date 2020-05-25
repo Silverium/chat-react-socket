@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { useChatMessage, SocketMessage, sendMessage, useChatHistory } from '../../effects/Chat' // eslint-disable-line no-unused-vars
+import { SettingsContext } from '../../context/settings'
 
 const Chat: React.FunctionComponent<{}> = () => {
   const [messagesList, setMessagesList] = React.useState([])
@@ -8,8 +9,8 @@ const Chat: React.FunctionComponent<{}> = () => {
     setMessagesList(history)
   })
   const [msg, setMsg] = React.useState('')
-  const send = (msg: string) => {
-    sendMessage(msg)
+  const send = (msgProps:{msg: string; userName:string}) => {
+    sendMessage(msgProps)
     setMsg('')
   }
   useChatMessage((msgProps: SocketMessage) => {
@@ -17,13 +18,17 @@ const Chat: React.FunctionComponent<{}> = () => {
   })
 
   return (
-    <section>
-      {messagesList.map(({ msg, id }, i) => (
-        <p key={i}>{id}: {msg}</p>
-      ))}
-      <input type='text' value={msg} name='msg' onChange={(event) => setMsg(event.currentTarget.value)} />
-      <button onClick={() => send(msg)}>Send Message!</button>
-    </section>
+    <SettingsContext.Consumer>
+      {({ settings }) => (
+        <section>
+          {messagesList.map(({ userName, msg, id }, i) => (
+            <p key={i}>{userName || id}: {msg}</p>
+          ))}
+          <input type='text' value={msg} name='msg' onChange={(event) => setMsg(event.currentTarget.value)} />
+          <button onClick={() => send({ msg, userName: settings.userName })}>Send Message!</button>
+        </section>
+      )}
+    </SettingsContext.Consumer>
   )
 }
 
