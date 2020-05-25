@@ -7,7 +7,7 @@ import { useLocal } from '../../effects/useLocal'
 import NavBar from '../../components/NavBar'
 import Settings from '../Settings'
 import { SettingsContext } from '../../context/settings'
-import { defaultSettings, settings as settingsConst, appTabs } from '../../constants/'
+import { defaultSettings, settings as settingsConst, appTabs, getTimeFormatter } from '../../constants/'
 import Chat from '../Chat'
 export interface themeProps {
   foreground: string;
@@ -37,8 +37,10 @@ const App: React.FunctionComponent<{}> = function () {
     settings: <Settings />,
     chat: <Chat />
   }
+  const timeFormatter = getTimeFormatter(settings[settingsConst.TIME_FORMAT])
+
   return (
-    <SettingsContext.Provider value={{ settings, updateSettings, resetSettings }}>
+    <SettingsContext.Provider value={{ settings, updateSettings, resetSettings, timeFormatter }}>
       <NavBar tabs={appTabs} {...{ selected, setSelected }} />
       <section className={`container themes-${settings.theme}`}>
         {APP_CONTENT[selected]}

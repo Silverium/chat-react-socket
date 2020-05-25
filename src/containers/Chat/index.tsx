@@ -19,10 +19,13 @@ const Chat: React.FunctionComponent<{}> = () => {
 
   return (
     <SettingsContext.Consumer>
-      {({ settings }) => (
+      {({ settings, timeFormatter }) => (
         <section>
-          {messagesList.map(({ userName, msg, id }, i) => (
-            <p key={i}>{userName || id}: {msg}</p>
+          {messagesList.map(({ userName, msg, id, timestamp }, i) => (
+            <div key={i}>
+              <div>{userName || id}, {timeFormatter(timestamp)}</div>
+              <p> {msg}</p>
+            </div>
           ))}
           <input type='text' value={msg} name='msg' onChange={(event) => setMsg(event.currentTarget.value)} />
           <button onClick={() => send({ msg, userName: settings.userName })}>Send Message!</button>
