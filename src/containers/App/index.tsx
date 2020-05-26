@@ -3,7 +3,7 @@ import each from 'lodash-es/each'
 import { useTranslation } from 'react-i18next'
 
 import './App.scss'
-import { useLocal, useChatMessage, useChatHistory } from '@/effects'
+import { useLocal, useChatMessage, useChatHistory, useWindowSize } from '@/effects'
 import NavBar from '@/components/NavBar'
 import Settings from '@/containers/Settings'
 import {
@@ -48,17 +48,22 @@ const App: React.FunctionComponent<{}> = function () {
     setActiveTab(tab)
     if (tab === chatsTab) setUnreadMsg(0)
   }
+  const windowSize = useWindowSize()
+  const [bodyHeight, setBodyHeight] = React.useState(windowSize.height)
+  const onHeightChange = (n:number) => {
+    setBodyHeight(windowSize.height - n)
+  }
 
   const APP_CONTENT: { [key: string]: JSX.Element } = {
-    chat: <Chat {...{ messagesList }} />,
-    settings: <Settings />
+    chat: <Chat {...{ messagesList, bodyHeight }} />,
+    settings: <Settings {...{ bodyHeight }} />
   }
   const timeFormatter = getTimeFormatter(settings[settingsProps.TIME_FORMAT])
 
   return (
     <SettingsContext.Provider value={{ settings, updateSettings, resetSettings, timeFormatter }}>
-      <NavBar tabs={appTabs} {...{ activeTab, onTabSelect, unreadMsg }} />
-      <section className={`container themes-${settings.theme}`}>
+      <NavBar tabs={appTabs} {...{ activeTab, onTabSelect, unreadMsg, onHeightChange }} />
+      <section className={`App__content themes-${settings.theme}`}>
         {APP_CONTENT[activeTab]}
       </section>
     </SettingsContext.Provider>

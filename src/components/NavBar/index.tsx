@@ -9,11 +9,18 @@ export interface NavBarProps {
   activeTab: string;
   onTabSelect: (name: string) => void;
   unreadMsg: number;
+  onHeightChange: (n:number)=> void;
 }
-const NavBar: React.FunctionComponent<NavBarProps> = ({ tabs, activeTab, onTabSelect, unreadMsg }) => {
+const NavBar: React.FunctionComponent<NavBarProps> = ({ tabs, activeTab, onTabSelect, unreadMsg, onHeightChange }) => {
+  const [height, setHeight] = React.useState(0)
+  const ref = React.useRef(null)
+  onHeightChange(height)
+  React.useEffect(() => {
+    setHeight(ref.current.clientHeight)
+  })
   const { t } = useTranslation()
   return (
-    <ul className='NavBar'> {
+    <ul ref={ref} className='NavBar sticky'> {
       tabs.map(({ name, href }) => (
         <li key={name} className={`NavBar__tab ${activeTab === name ? 'selected' : ''}`} onClick={() => onTabSelect(name)}>
           <a {...{ href }}>

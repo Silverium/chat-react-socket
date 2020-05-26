@@ -7,7 +7,7 @@ import { settingsProps, themes, languages, timeFormats, sendEnterOptions } from 
 import SelectSetting from '@/components/SelectSetting'
 const { LANGUAGE, THEME, TIME_FORMAT, USER_NAME, SEND_ENTER } = settingsProps
 
-const Settings: React.FunctionComponent<{}> = () => {
+const Settings: React.FunctionComponent<{bodyHeight:number}> = ({ bodyHeight }) => {
   const { t, i18n } = useTranslation()
 
   const selectLanguageProps = {
@@ -43,18 +43,24 @@ const Settings: React.FunctionComponent<{}> = () => {
       text: upperFirst(t(value))
     }))
   }
+  // TODO: create input text for userName
   // TODO: transform some SelectSetting into radio buttons
   return (
     <SettingsContext.Consumer>
       {({ settings, updateSettings, resetSettings }) => (
-        <div className='settings'>
-          <input type='text' value={settings[USER_NAME]} onChange={(event) => updateSettings[USER_NAME](event.currentTarget.value)} />
-          <SelectSetting {...selectTimeFormatProps} value={settings[TIME_FORMAT]} onChange={(value) => updateSettings[TIME_FORMAT](value)} />
-          <SelectSetting {...selectThemeProps} value={settings[THEME]} onChange={(value) => updateSettings[THEME](value)} />
-          <SelectSetting {...sendCtrlEnterProps} value={settings[SEND_ENTER]} onChange={(value) => updateSettings[SEND_ENTER](value)} />
-          <SelectSetting {...selectLanguageProps} value={settings[LANGUAGE]} />
-          <button onClick={resetSettings}>{upperFirst(t('reset'))}</button>
-        </div>
+        <section>
+          <div style={{ height: bodyHeight }} className='settings'>
+            userName: <input type='text' value={settings[USER_NAME]} onChange={(event) => updateSettings[USER_NAME](event.currentTarget.value)} />
+            <SelectSetting {...selectTimeFormatProps} value={settings[TIME_FORMAT]} onChange={(value) => updateSettings[TIME_FORMAT](value)} />
+            <SelectSetting {...selectThemeProps} value={settings[THEME]} onChange={(value) => updateSettings[THEME](value)} />
+            <SelectSetting {...sendCtrlEnterProps} value={settings[SEND_ENTER]} onChange={(value) => updateSettings[SEND_ENTER](value)} />
+            <SelectSetting {...selectLanguageProps} value={settings[LANGUAGE]} />
+          </div>
+          <footer className='sticky sticky-bottom'>
+
+            <button onClick={resetSettings}>{upperFirst(t('reset'))}</button>
+          </footer>
+        </section>
       )}
     </SettingsContext.Consumer>
   )

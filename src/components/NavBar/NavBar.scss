@@ -1,6 +1,6 @@
 @import '../../style/variables';
 
-ul {
+ul.NavBar {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -8,25 +8,26 @@ ul {
   background-color: #333;
   top: 0;
   width: 100%;
-}
 
-li {
-  float: left;
 
-  a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
+  li {
+    float: left;
 
+    a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+
+    }
+
+    &:hover:not(.selected) {
+      background-color: #111;
+    }
   }
 
-  &:hover:not(.selected) {
-    background-color: #111;
+  .selected {
+    background-color: $primary-color;
   }
-}
-
-.selected {
-  background-color: $primary-color;
 }

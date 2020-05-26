@@ -36,7 +36,7 @@ Built in a node.js server with socket.io implementing a frontend in React 16.
 
 ## Features required by this exercise
 
-- [ ] Chat - message box
+- [x] Chat - message box
 - [ ] Chat box - sent messages floating right
 - [ ] Chat box - received messages floating left
 - [x] Messages - contains date
