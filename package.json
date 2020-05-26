@@ -9,6 +9,7 @@
   "private": false,
   "scripts": {
     "build": "webpack --config webpack.config.js --mode production",
+    "profile": "webpack --config webpack.config.js --mode production --profile --progress",
     "lint": "standard src/**/*.tsx src/**/*.ts src/**/*.jsx src/**/*.js ./index.tsx  --env jest",
     "server": "ts-node ./server/index.ts",
     "start": "webpack-dev-server --hot --open",
