@@ -1,16 +1,10 @@
 import React from 'react'
 import { eventNames } from '../constants'
-const io = require('socket.io-client')
 
-const socket = io.connect('http://localhost:3000')
-
-export interface SocketMessage {
-  id: string;
-  msg: string;
-  userName?: string;
-  timestamp?: number;
-}
-socket.on(eventNames.CLIENTS_CONNECTED, console.log)
+import {
+  socket,
+  SocketMessage // eslint-disable-line no-unused-vars
+} from '@/socket'
 
 export const useChatHistory = (callback: (payload: SocketMessage[]) => void) => {
   React.useEffect(() => {
@@ -27,7 +21,4 @@ export const useChatMessage = (callback: (payload: SocketMessage) => void) => {
 
     return () => socket.off(eventNames.MESSAGE)
   })
-}
-export const sendMessage = (msgProps:{msg: string; userName:string}) => {
-  socket.emit(eventNames.MESSAGE, msgProps)
 }

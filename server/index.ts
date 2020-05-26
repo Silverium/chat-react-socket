@@ -2,7 +2,7 @@ import { createServer } from 'http'
 import { Socket, Server } from 'socket.io' // eslint-disable-line no-unused-vars
 
 import { eventNames } from '../src/constants'
-import { SocketMessage } from '../src/effects/Chat' // eslint-disable-line no-unused-vars
+import { SocketMessage } from '../src/socket' // eslint-disable-line no-unused-vars
 const server = createServer()
 const io = require('socket.io')(server)
 export const connectedClients = new Map()

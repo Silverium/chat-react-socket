@@ -1,4 +1,8 @@
-export const settings = {
+export interface SettingsProps {
+  [key: string]: string;
+}
+
+export const settingsProps: SettingsProps = {
   LANGUAGE: 'language',
   SEND_ENTER: 'sendEnter',
   THEME: 'theme',
@@ -12,20 +16,17 @@ export const timeFormats = ['12h', '24h']
 export const sendEnterOptions = ['true', 'false']
 
 export const availableSettings = {
-  [settings.LANGUAGE]: languages,
-  [settings.SEND_ENTER]: sendEnterOptions,
-  [settings.THEME]: themes,
-  [settings.TIME_FORMAT]: timeFormats,
-  [settings.USER_NAME]: ''
+  [settingsProps.LANGUAGE]: languages,
+  [settingsProps.SEND_ENTER]: sendEnterOptions,
+  [settingsProps.THEME]: themes,
+  [settingsProps.TIME_FORMAT]: timeFormats,
+  [settingsProps.USER_NAME]: ''
 }
 
-export const defaultSettings = Object.entries(availableSettings).reduce(
+export const defaultSettings: SettingsProps = Object.entries(availableSettings).reduce(
   (acc, [key, value]) => {
     acc[key] = value[0]
     return acc
   },
-  {} as any
+  {} as SettingsProps
 )
-// TODO: find a good place for getTimeFormatter
-export const getTimeFormatter = (hour12:string) =>
-  new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: hour12 === '12h' }).format

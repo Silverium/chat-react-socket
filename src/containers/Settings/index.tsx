@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next'
 import upperFirst from 'lodash-es/upperFirst'
 
 import { SettingsContext } from '@/context/settings'
-import { settings, themes, languages, timeFormats, sendEnterOptions } from '@/constants'
+import { settingsProps, themes, languages, timeFormats, sendEnterOptions } from '@/constants'
 import SelectSetting from '@/components/SelectSetting'
-const { LANGUAGE, THEME, TIME_FORMAT, USER_NAME, SEND_ENTER } = settings
+const { LANGUAGE, THEME, TIME_FORMAT, USER_NAME, SEND_ENTER } = settingsProps
 
 const Settings: React.FunctionComponent<{}> = () => {
   const { t, i18n } = useTranslation()

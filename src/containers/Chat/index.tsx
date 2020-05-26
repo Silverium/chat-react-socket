@@ -1,8 +1,12 @@
 import React from 'react'
 
-import { useChatMessage, SocketMessage, sendMessage, useChatHistory } from '@/effects/Chat' // eslint-disable-line no-unused-vars
+import { useChatMessage, useChatHistory } from '@/effects'
+import {
+  SocketMessage, // eslint-disable-line no-unused-vars
+  sendMessage
+} from '@/socket'
 import { SettingsContext } from '@/context/settings'
-import { settings as settingsConst } from '@/constants/'
+import { settingsProps as settingsConst } from '@/constants'
 const Chat: React.FunctionComponent<{}> = () => {
   const [messagesList, setMessagesList] = React.useState([])
   useChatHistory((history) => {
