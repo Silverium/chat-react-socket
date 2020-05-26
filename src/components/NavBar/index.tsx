@@ -6,16 +6,20 @@ import './NavBar.scss'
 import { AppTabProps } from '@/constants' // eslint-disable-line no-unused-vars
 export interface NavBarProps {
   tabs: AppTabProps[];
-  selected: string;
-  setSelected: (name: string) => void;
+  activeTab: string;
+  onTabSelect: (name: string) => void;
+  unreadMsg: number;
 }
-const NavBar: React.FunctionComponent<NavBarProps> = ({ tabs, selected, setSelected }) => {
+const NavBar: React.FunctionComponent<NavBarProps> = ({ tabs, activeTab, onTabSelect, unreadMsg }) => {
   const { t } = useTranslation()
   return (
     <ul className='NavBar'> {
       tabs.map(({ name, href }) => (
-        <li key={name} className={`NavBar__tab ${selected === name ? 'selected' : ''}`} onClick={() => setSelected(name)}>
-          <a {...{ href }}>{upperFirst(t(name))}</a>
+        <li key={name} className={`NavBar__tab ${activeTab === name ? 'selected' : ''}`} onClick={() => onTabSelect(name)}>
+          <a {...{ href }}>
+            {upperFirst(t(name))}
+            {name === 'chat' && unreadMsg > 0 && <strong> {unreadMsg}</strong>}
+          </a>
         </li>
       ))
     }

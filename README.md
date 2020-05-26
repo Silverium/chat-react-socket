@@ -56,7 +56,7 @@ Built in a node.js server with socket.io implementing a frontend in React 16.
 - [ ] Chat box - link parser => youtube
 - [ ] Chat box - link parser => images
 - [ ] Chat box - link parser => generic links
-- [ ] Chat tab - unread messages count
+- [x] Chat tab - unread messages count
 - [x] Settings - language selection
 
 ## Steps taken to create this app

@@ -1,25 +1,17 @@
 import React from 'react'
 
-import { useChatMessage, useChatHistory } from '@/effects'
 import {
   SocketMessage, // eslint-disable-line no-unused-vars
   sendMessage
 } from '@/socket'
 import { SettingsContext } from '@/context/settings'
 import { settingsProps as settingsConst } from '@/constants'
-const Chat: React.FunctionComponent<{}> = () => {
-  const [messagesList, setMessagesList] = React.useState([])
-  useChatHistory((history) => {
-    setMessagesList(history)
-  })
+const Chat: React.FunctionComponent<{messagesList:SocketMessage[]}> = ({ messagesList }) => {
   const [msg, setMsg] = React.useState('')
   const send = (msgProps:{msg: string; userName:string}) => {
     sendMessage(msgProps)
     setMsg('')
   }
-  useChatMessage((msgProps: SocketMessage) => {
-    setMessagesList(messagesList.concat(msgProps))
-  })
   const { settings } = React.useContext(SettingsContext)
   const onKeyPress = (event: React.KeyboardEvent) => {
     const { key, ctrlKey } = event

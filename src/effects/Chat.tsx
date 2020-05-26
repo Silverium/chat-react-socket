@@ -22,3 +22,9 @@ export const useChatMessage = (callback: (payload: SocketMessage) => void) => {
     return () => socket.off(eventNames.MESSAGE)
   })
 }
+
+export const useUnreadMessages = (value:number = 0) : [number, React.Dispatch<React.SetStateAction<number>>] => {
+  const [unreadMsg, setUnreadMsg] = React.useState(value)
+  useChatMessage(() => setUnreadMsg(unreadMsg + 1))
+  return [unreadMsg, setUnreadMsg]
+}
