@@ -3,11 +3,11 @@ import each from 'lodash-es/each'
 import { useTranslation } from 'react-i18next'
 
 import './App.scss'
-import { useLocal } from '../../effects/useLocal'
-import NavBar from '../../components/NavBar'
+import { useLocal } from '@/effects/useLocal'
+import NavBar from '@/components/NavBar'
 import Settings from '../Settings'
-import { SettingsContext } from '../../context/settings'
-import { defaultSettings, settings as settingsConst, appTabs, getTimeFormatter } from '../../constants/'
+import { SettingsContext } from '@/context/settings'
+import { defaultSettings, settings as settingsConst, appTabs, getTimeFormatter } from '@/constants/'
 import Chat from '../Chat'
 export interface themeProps {
   foreground: string;

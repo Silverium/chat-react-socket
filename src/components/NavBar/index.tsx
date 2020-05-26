@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import upperFirst from 'lodash-es/upperFirst'
 
 import './NavBar.scss'
-import { AppTabProps } from '../../constants' // eslint-disable-line no-unused-vars
+import { AppTabProps } from '@/constants' // eslint-disable-line no-unused-vars
 export interface NavBarProps {
   tabs: AppTabProps[];
   selected: string;

@@ -1,6 +1,6 @@
 import React from 'react'
 
-// import { useLocal } from '../../effects/useLocal'
+// import { useLocal } from '@/effects/useLocal'
 
 export interface SelectSettingOption {
   value: string;
