@@ -12,11 +12,9 @@ export interface NavBarProps {
   onHeightChange: (n:number)=> void;
 }
 const NavBar: React.FunctionComponent<NavBarProps> = ({ tabs, activeTab, onTabSelect, unreadMsg, onHeightChange }) => {
-  const [height, setHeight] = React.useState(0)
   const ref = React.useRef(null)
-  onHeightChange(height)
   React.useEffect(() => {
-    setHeight(ref.current.clientHeight)
+    onHeightChange(ref.current.clientHeight)
   })
   const { t } = useTranslation()
   return (
