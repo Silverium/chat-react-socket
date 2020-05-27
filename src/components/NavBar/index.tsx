@@ -17,10 +17,11 @@ const NavBar: React.FunctionComponent<NavBarProps> = ({ tabs, activeTab, onTabSe
     onHeightChange(ref.current.clientHeight)
   })
   const { t } = useTranslation()
+
   return (
     <ul ref={ref} className='NavBar'> {
       tabs.map(({ name, href }) => (
-        <li key={name} className={`NavBar__tab ${activeTab === name ? 'selected' : ''}`} onClick={() => onTabSelect(name)}>
+        <li key={name} className={`NavBar__tab ${activeTab === name ? 'selected' : ''} ${name === 'chat' && unreadMsg > 0 ? 'blink-tab' : ''}`} onClick={() => onTabSelect(name)}>
           <a {...{ href }}>
             {upperFirst(t(name))}
             {name === 'chat' && unreadMsg > 0 && <strong> {unreadMsg}</strong>}

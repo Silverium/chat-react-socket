@@ -42,7 +42,7 @@ Built in a node.js server with socket.io implementing a frontend in React 16.
 - [x] Messages - contains date
 - [x] Messages received - contains user name
 - [x] Chat input - box in the bottom of page with a text input and a send button
-- [ ] Chat tab - blinks when user is in other tab and receives messages
+- [x] Chat tab - blinks when user is in other tab and receives messages
 - [x] Settings - user name
 - [x] Settings - theme light or dark
 - [x] Settings - clock format 24 or 12h
