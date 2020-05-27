@@ -87,3 +87,11 @@ $abbrev in (margin: m, padding: p) {
     }
   }
 }
+.centered {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  :first-child {
+    margin: auto;
+  }
+}
