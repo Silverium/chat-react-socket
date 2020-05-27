@@ -4,8 +4,6 @@ import { useTranslation } from 'react-i18next'
 
 import './App.scss'
 import { useLocal, useChatMessage, useChatHistory, useWindowSize } from '@/effects'
-import NavBar from '@/components/NavBar'
-import Settings from '@/containers/Settings'
 import {
   SocketMessage // eslint-disable-line no-unused-vars
 } from '@/socket'
@@ -13,7 +11,9 @@ import { SettingsContext } from '@/context/settings'
 
 import { defaultSettings, settingsProps, appTabs } from '@/constants'
 import { getTimeFormatter } from '@/helpers'
-import Chat from '../Chat'
+const Settings = React.lazy(() => import('@/containers/Settings'))
+const Chat = React.lazy(() => import('../Chat'))
+const NavBar = React.lazy(() => import('@/components/NavBar'))
 
 const App: React.FunctionComponent<{}> = function () {
   const updateSettings: { [key: string]: React.Dispatch<React.SetStateAction<string>> } = {}
