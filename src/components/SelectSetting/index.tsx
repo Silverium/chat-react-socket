@@ -6,25 +6,26 @@ export interface SelectSettingOption {
   value: string;
   text: string;
 }
-export interface SelectSettingProps{
+export interface SelectSettingProps extends React.InputHTMLAttributes<{}>{
   storageKey: string;
   label: string;
-  onChange?: (value: string)=> void;
+  useChange?: (value: string)=> void;
   options: SelectSettingOption[];
   value?: string;
 }
 
-const SelectSetting: React.FunctionComponent<SelectSettingProps> = ({ label, storageKey, options, onChange, value }) => {
+const SelectSetting: React.FunctionComponent<SelectSettingProps> = (props) => {
+  const { label, storageKey, options, useChange, value } = props
   const [, updateValue] = React.useState(value)
-  const updateSetting = (inputValue: string) => {
-    updateValue(inputValue)
-    if (onChange)onChange(inputValue)
+  const updateSetting = (inputValue: React.FormEvent<HTMLSelectElement>) => {
+    updateValue(inputValue.currentTarget.value)
+    if (useChange)useChange(inputValue.currentTarget.value)
   }
 
   return (
-    <div className='SelectSetting'>
+    <div className='SelectSetting' {...props}>
       <label htmlFor={storageKey}>{label}</label>
-      <select name={storageKey} value={value} onChange={event => updateSetting(event.currentTarget.value)}>
+      <select name={storageKey} value={value} onChange={updateSetting}>
         {options.map(({ value, text }, i) => (
           <option key={i} value={value}>{text}</option>))}
       </select>

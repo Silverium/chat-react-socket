@@ -14,7 +14,7 @@ const Settings: React.FunctionComponent<{bodyHeight:number}> = ({ bodyHeight }) 
   const selectLanguageProps = {
     storageKey: LANGUAGE,
     label: upperFirst(t('language')),
-    onChange: (code: string) => i18n.changeLanguage(code),
+    useChange: (code: string) => i18n.changeLanguage(code),
     options: languages.map(value => ({
       value,
       text: upperFirst(t(value))
@@ -49,15 +49,18 @@ const Settings: React.FunctionComponent<{bodyHeight:number}> = ({ bodyHeight }) 
   return (
     <SettingsContext.Consumer>
       {({ settings, updateSettings, resetSettings }) => (
-        <section className='text-center'>
+        <section className='flex flex-column align-items-center'>
           <div style={{ height: bodyHeight }} className='settings'>
-            userName: <input type='text' value={settings[USER_NAME]} onChange={(event) => updateSettings[USER_NAME](event.currentTarget.value)} />
-            <SelectSetting {...selectTimeFormatProps} value={settings[TIME_FORMAT]} onChange={(value) => updateSettings[TIME_FORMAT](value)} />
-            <SelectSetting {...selectThemeProps} value={settings[THEME]} onChange={(value) => updateSettings[THEME](value)} />
-            <SelectSetting {...sendCtrlEnterProps} value={settings[SEND_ENTER]} onChange={(value) => updateSettings[SEND_ENTER](value)} />
+            <div>
+
+              {upperFirst(t('userName'))}: <input type='text' value={settings[USER_NAME]} onChange={(event) => updateSettings[USER_NAME](event.currentTarget.value)} />
+            </div>
+            <SelectSetting {...selectTimeFormatProps} value={settings[TIME_FORMAT]} useChange={(value) => updateSettings[TIME_FORMAT](value)} />
+            <SelectSetting {...selectThemeProps} value={settings[THEME]} useChange={(value) => updateSettings[THEME](value)} />
+            <SelectSetting {...sendCtrlEnterProps} value={settings[SEND_ENTER]} useChange={(value) => updateSettings[SEND_ENTER](value)} />
             <SelectSetting {...selectLanguageProps} value={settings[LANGUAGE]} />
           </div>
-          <footer className='sticky sticky-bottom'>
+          <footer className='sticky sticky-bottom centered'>
             <Button color='danger' onClick={resetSettings}>{upperFirst(t('reset'))}</Button>
           </footer>
         </section>

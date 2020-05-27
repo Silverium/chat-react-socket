@@ -95,3 +95,8 @@ $abbrev in (margin: m, padding: p) {
     margin: auto;
   }
 }
+.align-items {
+  &-center {
+    align-items: center;
+  }
+}
