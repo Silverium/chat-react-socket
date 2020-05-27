@@ -100,3 +100,21 @@ $abbrev in (margin: m, padding: p) {
     align-items: center;
   }
 }
+
+.rounded-4 {
+  border-radius: 4px;
+}
+.border {
+  &-1 {
+    border-style: solid;
+    border-width: 1px;
+  }
+  &-color {
+    &-light {
+      border-color: black;
+    }
+    &-dark {
+      border-color: ghostwhite;
+    }
+  }
+}
