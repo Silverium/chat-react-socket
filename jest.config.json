@@ -9,6 +9,7 @@
   "moduleFileExtensions": ["ts", "tsx", "js", "json", "node"],
   "moduleNameMapper": {
     "^.+\\.scss$": "identity-obj-proxy",
-    "^lodash-es": "<rootDir>/node_modules/lodash/index.js"
+    "^lodash-es": "<rootDir>/node_modules/lodash/index.js",
+    "^@/(.*)$": "<rootDir>/src/$1"
   }
 }
