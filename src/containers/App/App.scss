@@ -13,6 +13,13 @@ body {
   padding: map-get($map: $spacers, $key: 3)
 }
 
+.App {
+  &__wrapper {
+    max-width: 1000px;
+    margin: auto;
+  }
+}
+
 .bg-primary {
   background-color: $primary-color;
 }
@@ -41,10 +48,12 @@ ul {
   top: 0;
   width: 100%;
 }
+
 .text {
   &-right {
     text-align: right;
   }
+
   &-left {
     text-align: left;
   }

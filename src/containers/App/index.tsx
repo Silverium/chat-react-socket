@@ -35,6 +35,11 @@ const App: React.FunctionComponent<{}> = function () {
     })
     i18n.changeLanguage(defaultSettings[settingsProps.LANGUAGE])
   }
+  React.useEffect(() => {
+    const rootEl = document.getElementById('chatApp')
+    rootEl.className = `themes-${settings[settingsProps.THEME]}`
+  }, [settings[settingsProps.THEME]])
+
   const chatsTab = appTabs[0].name
   const [activeTab, setActiveTab] = React.useState(chatsTab) // first tab is "chat"
   const [unreadMsg, setUnreadMsg] = React.useState(0)
@@ -64,10 +69,12 @@ const App: React.FunctionComponent<{}> = function () {
 
   return (
     <SettingsContext.Provider value={{ settings, updateSettings, resetSettings, timeFormatter }}>
-      <NavBar tabs={appTabs} {...{ activeTab, onTabSelect, unreadMsg, onHeightChange }} />
-      <section className={`App__content themes-${settings.theme}`}>
-        {APP_CONTENT[activeTab]}
-      </section>
+      <div className={`App__wrapper themes-${settings.theme}`}>
+        <NavBar tabs={appTabs} {...{ activeTab, onTabSelect, unreadMsg, onHeightChange }} />
+        <section className='App__content '>
+          {APP_CONTENT[activeTab]}
+        </section>
+      </div>
     </SettingsContext.Provider>
   )
 }
