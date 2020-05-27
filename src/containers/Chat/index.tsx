@@ -7,9 +7,12 @@ import {
 
 import { SettingsContext } from '@/context/settings'
 import { settingsProps as settingsConst } from '@/constants'
+import SendIcon from '@/components/SendIcon'
+
 const Chat: React.FunctionComponent<{messagesList:SocketMessage[], bodyHeight: number}> = ({ messagesList, bodyHeight }) => {
   const [msg, setMsg] = React.useState('')
   const send = (msgProps:{msg: string; userName:string}) => {
+    if (!msg) return
     sendMessage(msgProps)
     setMsg('')
   }
@@ -42,8 +45,10 @@ const Chat: React.FunctionComponent<{messagesList:SocketMessage[], bodyHeight: n
           </ul>
 
           <footer ref={footerRef} className=''>
-            <textarea value={msg} name='msg' {...{ onKeyPress }} onChange={(event) => setMsg(event.currentTarget.value)} />
-            <button onClick={() => send({ msg, userName: settings.userName })}>Send Message!</button>
+            <input type='text' value={msg} name='msg' {...{ onKeyPress }} onChange={(event) => setMsg(event.currentTarget.value)} />
+            <button onClick={() => send({ msg, userName: settings.userName })}>
+              <SendIcon />
+            </button>
           </footer>
         </section>
       )}
