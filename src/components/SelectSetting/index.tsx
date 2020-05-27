@@ -23,7 +23,7 @@ const SelectSetting: React.FunctionComponent<SelectSettingProps> = (props) => {
   }
 
   return (
-    <div className='SelectSetting' {...props}>
+    <div className='SelectSetting flex flex-column' {...props}>
       <label htmlFor={storageKey}>{label}</label>
       <select name={storageKey} value={value} onChange={updateSetting}>
         {options.map(({ value, text }, i) => (

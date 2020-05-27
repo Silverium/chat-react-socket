@@ -45,7 +45,7 @@ const Chat: React.FunctionComponent<{messagesList:SocketMessage[], bodyHeight: n
             ))}
           </ul>
 
-          <footer ref={footerRef} className=''>
+          <footer ref={footerRef} className='flex'>
             <input type='text' value={msg} name='msg' {...{ onKeyPress }} onChange={(event) => setMsg(event.currentTarget.value)} />
             <Button color='primary' onClick={() => send({ msg, userName: settings.userName })}>
               <SendIcon />

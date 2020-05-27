@@ -44,13 +44,19 @@ const Settings: React.FunctionComponent<{bodyHeight:number}> = ({ bodyHeight }) 
       text: upperFirst(t(value))
     }))
   }
+  const [preferencesHeight, setPreferencesHeight] = React.useState(0)
+
+  const footerRef = React.useRef(null)
+  React.useEffect(() => {
+    setPreferencesHeight(bodyHeight - footerRef.current.clientHeight)
+  })
   // TODO: create input text for userName
   // TODO: transform some SelectSetting into radio buttons
   return (
     <SettingsContext.Consumer>
       {({ settings, updateSettings, resetSettings }) => (
         <section className='flex flex-column align-items-center'>
-          <div style={{ height: bodyHeight }} className='settings'>
+          <div style={{ height: preferencesHeight }} className='overflow-y-auto settings'>
             <div>
 
               {upperFirst(t('userName'))}: <input type='text' value={settings[USER_NAME]} onChange={(event) => updateSettings[USER_NAME](event.currentTarget.value)} />
@@ -60,7 +66,7 @@ const Settings: React.FunctionComponent<{bodyHeight:number}> = ({ bodyHeight }) 
             <SelectSetting {...sendCtrlEnterProps} value={settings[SEND_ENTER]} useChange={(value) => updateSettings[SEND_ENTER](value)} />
             <SelectSetting {...selectLanguageProps} value={settings[LANGUAGE]} />
           </div>
-          <footer className='sticky sticky-bottom centered'>
+          <footer ref={footerRef} className='sticky sticky-bottom centered'>
             <Button color='danger' onClick={resetSettings}>{upperFirst(t('reset'))}</Button>
           </footer>
         </section>
