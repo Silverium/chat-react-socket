@@ -1,0 +1,89 @@
+@import './variables';
+/// spacers: margin and paddings
+$chattApp-spacer: 16px;
+$bootstrap-spacers: () !default;
+$spacers: map-merge((0: 0,
+    1: ($chattApp-spacer * 0.25),
+    /* 4px*/
+    2: ($chattApp-spacer * 0.5),
+    /* 8px*/
+    3: $chattApp-spacer,
+    /* 16px*/
+    4: ($chattApp-spacer * 1.5),
+    /* 24px*/
+    5: ($chattApp-spacer * 2),
+    /* 32px*/
+    6: ($chattApp-spacer * 3)
+    /* 48px*/
+  ),
+  $bootstrap-spacers
+  /* in case we use them */
+);
+
+@each $prop,
+$abbrev in (margin: m, padding: p) {
+
+  @each $size,
+  $length in $spacers {
+    .#{$abbrev}-#{$size} {
+      #{$prop}: $length;
+    }
+
+    .#{$abbrev}t-#{$size},
+    .#{$abbrev}y-#{$size} {
+      #{$prop}-top: $length;
+    }
+
+    .#{$abbrev}r-#{$size},
+    .#{$abbrev}x-#{$size} {
+      #{$prop}-right: $length;
+    }
+
+    .#{$abbrev}b-#{$size},
+    .#{$abbrev}y-#{$size} {
+      #{$prop}-bottom: $length;
+    }
+
+    .#{$abbrev}l-#{$size},
+    .#{$abbrev}x-#{$size} {
+      #{$prop}-left: $length;
+    }
+  }
+}
+
+/// positioning
+.sticky {
+  position: sticky;
+
+  &-bottom {
+    bottom: 0;
+  }
+}
+
+.flex {
+  display: flex;
+
+  &-column {
+    flex-direction: column;
+
+  }
+
+  .grow-1 {
+    flex-grow: 1;
+  }
+
+  .wrap {
+    flex-wrap: wrap;
+  }
+}
+.h-100 {
+  height: 100%;
+}
+
+.overflow {
+  &-y {
+    &-auto {
+      overflow-y: auto;
+    }
+  }
+}
