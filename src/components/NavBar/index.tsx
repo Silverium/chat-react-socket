@@ -18,7 +18,7 @@ const NavBar: React.FunctionComponent<NavBarProps> = ({ tabs, activeTab, onTabSe
   })
   const { t } = useTranslation()
   return (
-    <ul ref={ref} className='NavBar sticky'> {
+    <ul ref={ref} className='NavBar'> {
       tabs.map(({ name, href }) => (
         <li key={name} className={`NavBar__tab ${activeTab === name ? 'selected' : ''}`} onClick={() => onTabSelect(name)}>
           <a {...{ href }}>

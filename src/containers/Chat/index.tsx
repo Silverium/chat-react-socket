@@ -1,8 +1,10 @@
 import React from 'react'
 import {
   SocketMessage, // eslint-disable-line no-unused-vars
-  sendMessage
+  sendMessage,
+  socket
 } from '@/socket'
+
 import { SettingsContext } from '@/context/settings'
 import { settingsProps as settingsConst } from '@/constants'
 const Chat: React.FunctionComponent<{messagesList:SocketMessage[], bodyHeight: number}> = ({ messagesList, bodyHeight }) => {
@@ -28,18 +30,18 @@ const Chat: React.FunctionComponent<{messagesList:SocketMessage[], bodyHeight: n
   return (
     <SettingsContext.Consumer>
       {({ settings, timeFormatter }) => (
-        <section style={{ height: bodyHeight }}>
+        <section style={{ height: bodyHeight }} className='overflow-y-auto'>
           <ul style={{ height: msgsHeight }} className='overflow-y-auto'>
 
             {messagesList.map(({ userName, msg, id, timestamp }, i) => (
-              <li key={i}>
+              <li key={i} className={`m-3 ${socket.id === id ? 'text-right' : 'text-left'}`}>
                 <div>{userName || id}, {timeFormatter(timestamp)}</div>
                 <p> {msg}</p>
               </li>
             ))}
           </ul>
 
-          <footer ref={footerRef} className='sticky sticky-bottom'>
+          <footer ref={footerRef} className=''>
             <textarea value={msg} name='msg' {...{ onKeyPress }} onChange={(event) => setMsg(event.currentTarget.value)} />
             <button onClick={() => send({ msg, userName: settings.userName })}>Send Message!</button>
           </footer>

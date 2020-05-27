@@ -48,7 +48,7 @@ const Settings: React.FunctionComponent<{bodyHeight:number}> = ({ bodyHeight }) 
   return (
     <SettingsContext.Consumer>
       {({ settings, updateSettings, resetSettings }) => (
-        <section>
+        <section className='text-center'>
           <div style={{ height: bodyHeight }} className='settings'>
             userName: <input type='text' value={settings[USER_NAME]} onChange={(event) => updateSettings[USER_NAME](event.currentTarget.value)} />
             <SelectSetting {...selectTimeFormatProps} value={settings[TIME_FORMAT]} onChange={(value) => updateSettings[TIME_FORMAT](value)} />
