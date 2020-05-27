@@ -11,7 +11,7 @@
     "build": "webpack --config webpack.config.js --mode production",
     "profile": "webpack --config webpack.config.js --mode production --profile --progress",
     "lint": "standard src/**/*.tsx src/**/*.ts src/**/*.jsx src/**/*.js ./index.tsx  --env jest",
-    "server": "ts-node ./server/index.ts",
+    "server": "ts-node -O '{\"module\":\"commonJs\"}' ./server/index.ts",
     "start": "webpack-dev-server --hot --open",
     "test": "jest"
   },
@@ -58,6 +58,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "express": "^4.17.1",
     "i18next": "^19.4.4",
     "i18next-xhr-backend": "^3.2.2",
     "lodash-es": "^4.17.15",
