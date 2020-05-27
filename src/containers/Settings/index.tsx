@@ -5,6 +5,7 @@ import upperFirst from 'lodash-es/upperFirst'
 import { SettingsContext } from '@/context/settings'
 import { settingsProps, themes, languages, timeFormats, sendEnterOptions } from '@/constants'
 import SelectSetting from '@/components/SelectSetting'
+import Button from '@/components/Button'
 const { LANGUAGE, THEME, TIME_FORMAT, USER_NAME, SEND_ENTER } = settingsProps
 
 const Settings: React.FunctionComponent<{bodyHeight:number}> = ({ bodyHeight }) => {
@@ -57,8 +58,7 @@ const Settings: React.FunctionComponent<{bodyHeight:number}> = ({ bodyHeight }) 
             <SelectSetting {...selectLanguageProps} value={settings[LANGUAGE]} />
           </div>
           <footer className='sticky sticky-bottom'>
-
-            <button onClick={resetSettings}>{upperFirst(t('reset'))}</button>
+            <Button color='danger' onClick={resetSettings}>{upperFirst(t('reset'))}</Button>
           </footer>
         </section>
       )}
