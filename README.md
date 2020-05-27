@@ -9,6 +9,7 @@ This is a humble exercise consisting in a **chat app**
 Built in a node.js server with socket.io implementing a frontend in React 16.
 
 ## How can I run it?
+Press the button => [![Runme](https://runme.io/static/button.svg)](https://runme.io/run?app_id=2b2d0124-bcf4-4d83-8058-eb9b7554b7c2)
 
 ### Requirements
 
