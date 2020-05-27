@@ -34,7 +34,7 @@ const Chat: React.FunctionComponent<{messagesList:SocketMessage[], bodyHeight: n
   return (
     <SettingsContext.Consumer>
       {({ settings, timeFormatter }) => (
-        <section style={{ height: bodyHeight }} className='overflow-y-auto'>
+        <section>
           <ul style={{ height: msgsHeight }} className='overflow-y-auto'>
 
             {messagesList.map(({ userName, msg, id, timestamp }, i) => (
@@ -46,7 +46,7 @@ const Chat: React.FunctionComponent<{messagesList:SocketMessage[], bodyHeight: n
           </ul>
 
           <footer ref={footerRef} className='flex'>
-            <input type='text' value={msg} name='msg' {...{ onKeyPress }} onChange={(event) => setMsg(event.currentTarget.value)} />
+            <input type='text' value={msg} className='grow-1' name='msg' {...{ onKeyPress }} onChange={(event) => setMsg(event.currentTarget.value)} />
             <Button color='primary' onClick={() => send({ msg, userName: settings.userName })}>
               <SendIcon />
             </Button>

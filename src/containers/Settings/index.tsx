@@ -57,9 +57,9 @@ const Settings: React.FunctionComponent<{bodyHeight:number}> = ({ bodyHeight }) 
       {({ settings, updateSettings, resetSettings }) => (
         <section className='flex flex-column align-items-center'>
           <div style={{ height: preferencesHeight }} className='overflow-y-auto settings'>
-            <div>
-
-              {upperFirst(t('userName'))}: <input type='text' value={settings[USER_NAME]} onChange={(event) => updateSettings[USER_NAME](event.currentTarget.value)} />
+            <div className='flex flex-column'>
+              <label>{upperFirst(t('userName'))}</label>
+              <input type='text' value={settings[USER_NAME]} onChange={(event) => updateSettings[USER_NAME](event.currentTarget.value)} />
             </div>
             <SelectSetting {...selectTimeFormatProps} value={settings[TIME_FORMAT]} useChange={(value) => updateSettings[TIME_FORMAT](value)} />
             <SelectSetting {...selectThemeProps} value={settings[THEME]} useChange={(value) => updateSettings[THEME](value)} />
