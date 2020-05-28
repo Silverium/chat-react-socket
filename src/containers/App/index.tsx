@@ -20,9 +20,9 @@ const NavBar = React.lazy(() => import(/* webpackChunkName: "content" */ '@/comp
 const App: React.FunctionComponent<{}> = function () {
   const updateSettings: { [key: string]: React.Dispatch<React.SetStateAction<string>> } = {}
   const settings: { [key: string]: string } = {}
-  each(defaultSettings, (_value: string, key: string) => {
+  each(defaultSettings, (value: string, key: string) => {
     const [settingValue, updateValue] = useLocal(key)
-    settings[key] = settingValue
+    settings[key] = settingValue || value
     updateSettings[key] = (toUpdate: string) => {
       settings[key] = toUpdate
       updateValue(toUpdate)
