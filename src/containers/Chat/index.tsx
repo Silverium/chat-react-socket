@@ -42,7 +42,7 @@ const Chat: React.FunctionComponent<{messagesList:SocketMessage[], bodyHeight: n
             {messagesList.map(({ userName, msg, id, timestamp }, i) => (
               <li key={i} className={`m-3 ${socket.id === id ? 'text-right' : 'text-left'}`}>
                 <div className='my-2'>{userName || id}, {timeFormatter(timestamp)}</div>
-                <span className={`p-1 rounded-4 border-1 border-color-${settings[settingsProps.THEME]}`}> {msg}</span>
+                <div className={`d-inline-block p-1 rounded-4 border-1 border-color-${socket.id === id ? 'primary' : settings[settingsProps.THEME]} ${socket.id === id ? 'ml-5' : 'mr-5'}`}> {msg}</div>
               </li>
             ))}
           </ul>
