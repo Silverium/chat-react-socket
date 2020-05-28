@@ -2,15 +2,7 @@ version: 1.0
 publish: app
 services:
   app:
-    command: yarn server
-    build:
-      type: dockerfile
-      config: ./.runme/server.Dockerfile
-    ports:
-      - container: 3000
-        public: 80
-  app:
-    command: yarn start 
+    command: yarn runme
     build:
       type: dockerfile
       config: ./.runme/Dockerfile
