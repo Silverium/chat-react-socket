@@ -6,11 +6,14 @@
   "en": "English",
   "dark": "dark",
   "es": "Spanish",
+  "false": "false",
   "interfaceTheme": "interface theme",
   "language": "language",
   "light": "light",
   "reset": "reset",
+  "sendEnter": "send with enter",
   "settings": "settings",
+  "true": "true",
   "userName": "user name",
   "welcome": "hello everybody"
 }

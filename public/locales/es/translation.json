@@ -7,10 +7,13 @@
   "dark": "oscuro",
   "es": "español",
   "interfaceTheme": "Tema de la interfaz",
+  "false": "falso",
   "language": "idioma",
   "light": "claro",
   "reset": "restablecer",
   "settings": "ajustes",
+  "sendEnter": "enviar con intro",
+  "true": "verdad",
   "userName": "nombre de usuario",
   "welcome": "Hola a todos"
 }
