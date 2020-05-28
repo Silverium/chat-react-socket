@@ -9,12 +9,11 @@ import Button from '@/components/Button'
 const { LANGUAGE, THEME, TIME_FORMAT, USER_NAME, SEND_ENTER } = settingsProps
 
 const Settings: React.FunctionComponent<{bodyHeight:number}> = ({ bodyHeight }) => {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
 
   const selectLanguageProps = {
     storagekey: LANGUAGE,
     label: upperFirst(t('language')),
-    usechange: (code: string) => i18n.changeLanguage(code),
     options: languages.map(value => ({
       value,
       text: upperFirst(t(value))
@@ -52,6 +51,7 @@ const Settings: React.FunctionComponent<{bodyHeight:number}> = ({ bodyHeight }) 
   })
   // TODO: create input text for userName
   // TODO: transform some SelectSetting into radio buttons
+  // TODO: refactor Props objects so we dont add html attributes
   return (
     <SettingsContext.Consumer>
       {({ settings, updateSettings, resetSettings }) => (
@@ -64,7 +64,7 @@ const Settings: React.FunctionComponent<{bodyHeight:number}> = ({ bodyHeight }) 
             <SelectSetting {...selectTimeFormatProps} value={settings[TIME_FORMAT]} usechange={(value) => updateSettings[TIME_FORMAT](value)} />
             <SelectSetting {...selectThemeProps} value={settings[THEME]} usechange={(value) => updateSettings[THEME](value)} />
             <SelectSetting {...sendCtrlEnterProps} value={settings[SEND_ENTER]} usechange={(value) => updateSettings[SEND_ENTER](value)} />
-            <SelectSetting {...selectLanguageProps} value={settings[LANGUAGE]} />
+            <SelectSetting {...selectLanguageProps} value={settings[LANGUAGE]} usechange={(value) => updateSettings[LANGUAGE](value)} />
           </div>
           <footer ref={footerRef} className='sticky sticky-bottom centered'>
             <Button color='danger' onClick={resetSettings}>{upperFirst(t('reset'))}</Button>

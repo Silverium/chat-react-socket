@@ -26,6 +26,7 @@ const App: React.FunctionComponent<{}> = function () {
     updateSettings[key] = (toUpdate: string) => {
       settings[key] = toUpdate
       updateValue(toUpdate)
+      if (key === settingsProps.LANGUAGE) i18n.changeLanguage(toUpdate)
     }
   })
   const { i18n } = useTranslation()
