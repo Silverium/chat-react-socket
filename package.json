@@ -8,13 +8,14 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "build": "webpack --config webpack.config.js --mode production",
+    "build": "webpack --env.NODE_ENV=prod --config webpack.config.js --mode production",
     "profile": "webpack --config webpack.config.js --mode production --profile --progress",
     "lint": "standard src/**/*.tsx src/**/*.ts src/**/*.jsx src/**/*.js ./index.tsx  --env jest",
     "server": "ts-node -O '{\"module\":\"commonJs\"}' ./server/index.ts",
-    "start": "webpack-dev-server --hot --open",
+    "dev": "webpack-dev-server --env.NODE_ENV=local --hot --open",
+    "start": "concurrently \"yarn dev\" \"yarn server\"",
     "test": "jest",
-    "runme":  "concurrently \"yarn webpack-dev-server\" \"yarn server\""
+    "runme": "yarn build && yarn server"
   },
   "pre-commit": [
     "lint"
@@ -28,6 +29,7 @@
   },
   "devDependencies": {
     "@types/enzyme": "^3.10.5",
+    "@types/express": "^4.17.6",
     "@types/jest": "^25.2.3",
     "@types/lodash-es": "^4.17.3",
     "@types/react": "^16.9.35",
@@ -62,6 +64,7 @@
     "concurrently": "^5.2.0",
     "express": "^4.17.1",
     "i18next": "^19.4.4",
+    "i18next-http-middleware": "^2.0.0",
     "i18next-xhr-backend": "^3.2.2",
     "lodash-es": "^4.17.15",
     "react": "^16.13.1",

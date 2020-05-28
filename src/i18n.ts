@@ -5,7 +5,7 @@ import Backend from 'i18next-xhr-backend'
 import { settingsProps } from './constants'
 
 const { LANGUAGE } = settingsProps
-
+console.info(process)
 i18n
   .use(Backend)
   .use(initReactI18next)
@@ -20,7 +20,7 @@ i18n
       escapeValue: false // not needed for react as it escapes by default
     },
     backend: {
-      loadPath: '../public/locales/{{lng}}/{{ns}}.json'
+      loadPath: 'public/locales/{{lng}}/{{ns}}.json'
     }
   })
 

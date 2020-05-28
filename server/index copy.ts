@@ -4,17 +4,36 @@ import path from 'path'
 import { eventNames } from '../src/constants'
 import { SocketMessage } from '../src/socket' // eslint-disable-line no-unused-vars
 import express from 'express'
+import { initReactI18next } from 'react-i18next'
 const app = express()
 const server = createServer(app)
 const io = require('socket.io')(server)
-export const connectedClients = new Map()
-app.use(express.static(path.join(__dirname, '../dist')))
 
+const i18next = require('i18next')
+const middleware = require('i18next-http-middleware')
+
+i18next
+  .use(middleware.LanguageDetector)
+  .use(initReactI18next)
+  .init({
+    debug: true,
+
+    lng: 'en',
+    fallbackLng: 'en',
+    whitelist: ['en', 'es'],
+
+    interpolation: {
+      escapeValue: false // not needed for react as it escapes by default
+    },
+    backend: {
+      loadPath: '/locales/{{lng}}/{{ns}}.json'
+    }
+  })
+app.use(express.static(path.join(__dirname, '../dist')))
+app.use(express.static(path.join(__dirname, '../dist/public')))
+
+export const connectedClients = new Map()
 app.get('/', (req:any, res:any) => res.sendFile(path.join(__dirname, '../dist/index.html')))
-app.get('/public/locales/:lng/:file', (req, res) => {
-  const { lng, file } = req.params
-  res.sendFile(path.join(__dirname, '../public/locales', lng, file))
-})
 
 const chatHistory: SocketMessage[] = []
 export const onConnect = (client: Socket, io: Server) => {
