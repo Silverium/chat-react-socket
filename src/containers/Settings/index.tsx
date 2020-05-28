@@ -12,7 +12,7 @@ const Settings: React.FunctionComponent<{bodyHeight:number}> = ({ bodyHeight }) 
   const { t } = useTranslation()
 
   const selectLanguageProps = {
-    storagekey: LANGUAGE,
+    storageKey: LANGUAGE,
     label: upperFirst(t('language')),
     options: languages.map(value => ({
       value,
@@ -20,7 +20,7 @@ const Settings: React.FunctionComponent<{bodyHeight:number}> = ({ bodyHeight }) 
     }))
   }
   const selectThemeProps = {
-    storagekey: THEME,
+    storageKey: THEME,
     label: upperFirst(t('interfaceTheme')),
     options: themes.map(value => ({
       value,
@@ -28,7 +28,7 @@ const Settings: React.FunctionComponent<{bodyHeight:number}> = ({ bodyHeight }) 
     }))
   }
   const selectTimeFormatProps = {
-    storagekey: TIME_FORMAT,
+    storageKey: TIME_FORMAT,
     label: upperFirst(t('clockDisplay')),
     options: timeFormats.map(value => ({
       value,
@@ -36,7 +36,7 @@ const Settings: React.FunctionComponent<{bodyHeight:number}> = ({ bodyHeight }) 
     }))
   }
   const sendCtrlEnterProps = {
-    storagekey: SEND_ENTER,
+    storageKey: SEND_ENTER,
     label: upperFirst(t('sendEnter')),
     options: sendEnterOptions.map(value => ({
       value,
@@ -61,10 +61,10 @@ const Settings: React.FunctionComponent<{bodyHeight:number}> = ({ bodyHeight }) 
               <label>{upperFirst(t('userName'))}</label>
               <input type='text' value={settings[USER_NAME]} onChange={(event) => updateSettings[USER_NAME](event.currentTarget.value)} />
             </div>
-            <SelectSetting {...selectTimeFormatProps} value={settings[TIME_FORMAT]} usechange={(value) => updateSettings[TIME_FORMAT](value)} />
-            <SelectSetting {...selectThemeProps} value={settings[THEME]} usechange={(value) => updateSettings[THEME](value)} />
-            <SelectSetting {...sendCtrlEnterProps} value={settings[SEND_ENTER]} usechange={(value) => updateSettings[SEND_ENTER](value)} />
-            <SelectSetting {...selectLanguageProps} value={settings[LANGUAGE]} usechange={(value) => updateSettings[LANGUAGE](value)} />
+            <SelectSetting {...selectTimeFormatProps} value={settings[TIME_FORMAT]} useChange={(value) => updateSettings[TIME_FORMAT](value)} />
+            <SelectSetting {...selectThemeProps} value={settings[THEME]} useChange={(value) => updateSettings[THEME](value)} />
+            <SelectSetting {...sendCtrlEnterProps} value={settings[SEND_ENTER]} useChange={(value) => updateSettings[SEND_ENTER](value)} />
+            <SelectSetting {...selectLanguageProps} value={settings[LANGUAGE]} useChange={(value) => updateSettings[LANGUAGE](value)} />
           </div>
           <footer ref={footerRef} className='sticky sticky-bottom centered'>
             <Button color='danger' onClick={resetSettings}>{upperFirst(t('reset'))}</Button>

@@ -38,7 +38,6 @@ const Chat: React.FunctionComponent<{messagesList:SocketMessage[], bodyHeight: n
       {({ settings, timeFormatter }) => (
         <section>
           <ul ref={msgsRef} style={{ height: msgsHeight }} className='overflow-y-auto'>
-
             {messagesList.map(({ userName, msg, id, timestamp }, i) => (
               <li key={i} className={`m-3 ${socket.id === id ? 'text-right' : 'text-left'}`}>
                 <div className='my-2'>{userName || id}, {timeFormatter(timestamp)}</div>
