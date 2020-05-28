@@ -19,10 +19,12 @@ const Chat: React.FunctionComponent<{messagesList:SocketMessage[], bodyHeight: n
   }
   const { settings } = React.useContext(SettingsContext)
   const onKeyPress = (event: React.KeyboardEvent) => {
-    const { key, ctrlKey } = event
+    const { key } = event
     const userName = settings[settingsProps.USER_NAME]
-    const isCtrlEnterActivated = settings[settingsProps.SEND_ENTER] === 'true'
-    if (isCtrlEnterActivated && key === 'Enter' && ctrlKey) send({ msg, userName })
+    console.log('%cvariable: settings[settingsProps.SEND_ENTER]', 'background-color: lime;', settings[settingsProps.SEND_ENTER])
+
+    const isSendEnterActivated = settings[settingsProps.SEND_ENTER] === 'true'
+    if (isSendEnterActivated && key === 'Enter') send({ msg, userName })
   }
   const [msgsHeight, setMsgsHeight] = React.useState(0)
   const footerRef = React.useRef(null)
