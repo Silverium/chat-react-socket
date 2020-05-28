@@ -3,7 +3,6 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const path = require('path')
 
 module.exports = env => {
-  const { NODE_ENV } = env
   return {
     entry: {
       main: './index.tsx'
@@ -14,7 +13,7 @@ module.exports = env => {
       path: path.resolve(__dirname, 'dist')
     },
     plugins: [
-      NODE_ENV === 'prod' ? new CleanWebpackPlugin() : () => {},
+      new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
         template: './index.html'
       })
