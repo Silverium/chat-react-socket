@@ -7,6 +7,7 @@ import {
 import { SettingsContext } from '@/context/settings'
 import { settingsProps } from '@/constants'
 import MessageForm from '@/components/MessageForm'
+import MsgFormatter from '@/components/MsgFormatter'
 
 const Chat: React.FunctionComponent<{messagesList:SocketMessage[], bodyHeight: number}> = ({ messagesList, bodyHeight }) => {
   const [msgsHeight, setMsgsHeight] = React.useState(0)
@@ -25,7 +26,9 @@ const Chat: React.FunctionComponent<{messagesList:SocketMessage[], bodyHeight: n
             {messagesList.map(({ userName, msg, id, timestamp }, i) => (
               <li key={i} className={`m-3 ${socket.id === id ? 'text-right' : 'text-left'}`}>
                 <div className='my-2'>{userName || id}, {timeFormatter(timestamp)}</div>
-                <div className={`d-inline-block p-1 rounded-4 border-1 border-color-${socket.id === id ? 'primary' : settings[settingsProps.THEME]} ${socket.id === id ? 'ml-5' : 'mr-5'}`}> {msg}</div>
+                <div className={`d-inline-block p-1 rounded-4 border-1 border-color-${socket.id === id ? 'primary' : settings[settingsProps.THEME]} ${socket.id === id ? 'ml-5' : 'mr-5'}`}>
+                  <MsgFormatter {...{ msg, hasSmileys: true }} />
+                </div>
               </li>
             ))}
           </ul>
