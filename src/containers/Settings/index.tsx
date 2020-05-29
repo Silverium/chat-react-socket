@@ -5,40 +5,50 @@ import upperFirst from 'lodash-es/upperFirst'
 import { SettingsContext } from '@/context/settings'
 import { settingsProps, themes, languages, timeFormats, sendEnterOptions } from '@/constants'
 import SelectSetting from '@/components/SelectSetting'
+import RadioSetting from '@/components/RadioSetting'
 import Button from '@/components/Button'
 const { LANGUAGE, THEME, TIME_FORMAT, USER_NAME, SEND_ENTER } = settingsProps
 
 const Settings: React.FunctionComponent<{bodyHeight:number}> = ({ bodyHeight }) => {
   const { t } = useTranslation()
-
-  const selectLanguageProps = {
-    storageKey: LANGUAGE,
-    label: upperFirst(t('language')),
-    options: languages.map(value => ({
-      value,
-      text: upperFirst(t(value))
-    }))
-  }
-  const selectThemeProps = {
-    storageKey: THEME,
-    label: upperFirst(t('interfaceTheme')),
-    options: themes.map(value => ({
-      value,
-      text: upperFirst(t(value))
-    }))
-  }
-  const selectTimeFormatProps = {
+  const { settings, updateSettings } = React.useContext(SettingsContext)
+  const timeFormatProps = {
     storageKey: TIME_FORMAT,
     label: upperFirst(t('clockDisplay')),
+    value: settings[TIME_FORMAT],
+    useChange: (value:string) => updateSettings[TIME_FORMAT](value),
     options: timeFormats.map(value => ({
       value,
       text: upperFirst(t(value))
     }))
   }
-  const sendCtrlEnterProps = {
+  const themeProps = {
+    storageKey: THEME,
+    label: upperFirst(t('interfaceTheme')),
+    useChange: (value: string) => updateSettings[THEME](value),
+    value: settings[THEME],
+    options: themes.map(value => ({
+      value,
+      text: upperFirst(t(value))
+    }))
+  }
+  const sendEnterProps = {
     storageKey: SEND_ENTER,
     label: upperFirst(t('sendEnter')),
+    value: settings[SEND_ENTER],
+    useChange: (value:string) => updateSettings[SEND_ENTER](value),
     options: sendEnterOptions.map(value => ({
+      value,
+      text: upperFirst(t(value))
+    }))
+  }
+  const languageProps = {
+    storageKey: LANGUAGE,
+    label: upperFirst(t('language')),
+    value: settings[LANGUAGE],
+    useChange: (value:string) => updateSettings[LANGUAGE](value),
+
+    options: languages.map(value => ({
       value,
       text: upperFirst(t(value))
     }))
@@ -50,8 +60,6 @@ const Settings: React.FunctionComponent<{bodyHeight:number}> = ({ bodyHeight }) 
     setPreferencesHeight(bodyHeight - footerRef.current.clientHeight)
   })
   // TODO: create input text for userName
-  // TODO: transform some SelectSetting into radio buttons
-  // TODO: refactor Props objects so we dont add html attributes
   return (
     <SettingsContext.Consumer>
       {({ settings, updateSettings, resetSettings }) => (
@@ -61,10 +69,10 @@ const Settings: React.FunctionComponent<{bodyHeight:number}> = ({ bodyHeight }) 
               <label>{upperFirst(t('userName'))}</label>
               <input type='text' value={settings[USER_NAME]} onChange={(event) => updateSettings[USER_NAME](event.currentTarget.value)} />
             </div>
-            <SelectSetting {...selectTimeFormatProps} value={settings[TIME_FORMAT]} useChange={(value) => updateSettings[TIME_FORMAT](value)} />
-            <SelectSetting {...selectThemeProps} value={settings[THEME]} useChange={(value) => updateSettings[THEME](value)} />
-            <SelectSetting {...sendCtrlEnterProps} value={settings[SEND_ENTER]} useChange={(value) => updateSettings[SEND_ENTER](value)} />
-            <SelectSetting {...selectLanguageProps} value={settings[LANGUAGE]} useChange={(value) => updateSettings[LANGUAGE](value)} />
+            <RadioSetting {...timeFormatProps} />
+            <RadioSetting {...themeProps} />
+            <RadioSetting {...sendEnterProps} />
+            <SelectSetting {...languageProps} />
           </div>
           <footer ref={footerRef} className='sticky sticky-bottom centered'>
             <Button color='danger' onClick={resetSettings}>{upperFirst(t('reset'))}</Button>

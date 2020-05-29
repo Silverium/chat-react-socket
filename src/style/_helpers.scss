@@ -76,6 +76,16 @@ $abbrev in (margin: m, padding: p) {
     flex-wrap: wrap;
   }
 }
+.justify {
+  &-content {
+    &-around {
+      justify-content: around;
+    }
+    &-between {
+      justify-content: space-between;
+    }
+  }
+}
 .h-100 {
   height: 100%;
 }
