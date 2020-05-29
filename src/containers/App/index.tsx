@@ -13,8 +13,8 @@ import { SettingsContext } from '@/context/settings'
 import { defaultSettings, settingsProps, appTabs } from '@/constants'
 import { getTimeFormatter } from '@/helpers'
 
-const Chat = React.lazy(() => import(/* webpackChunkName: "content", webpackPrefetch: true */ '../Chat'))
-const Settings = React.lazy(() => import(/* webpackChunkName: "content" , webpackPrefetch: true */ '@/containers/Settings'))
+const Chat = React.lazy(() => import(/* webpackChunkName: "content" */ '@/containers/Chat'))
+const Settings = React.lazy(() => import(/* webpackChunkName: "content" */ '@/containers/Settings'))
 const NavBar = React.lazy(() => import(/* webpackChunkName: "content" */ '@/components/NavBar'))
 
 const App: React.FunctionComponent<{}> = function () {
@@ -42,7 +42,7 @@ const App: React.FunctionComponent<{}> = function () {
   }, [settings[settingsProps.THEME]])
 
   const chatsTab = appTabs[0].name
-  const [activeTab, setActiveTab] = React.useState(chatsTab) // first tab is "chat"
+  const [activeTab, setActiveTab] = React.useState(chatsTab)
   const [unreadMsg, setUnreadMsg] = React.useState(0)
   const [messagesList, setMessagesList] = React.useState([])
   useChatHistory((history) => {
