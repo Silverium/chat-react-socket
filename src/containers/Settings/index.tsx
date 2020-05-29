@@ -3,11 +3,11 @@ import { useTranslation } from 'react-i18next'
 import upperFirst from 'lodash-es/upperFirst'
 
 import { SettingsContext } from '@/context/settings'
-import { settingsProps, themes, languages, timeFormats, sendEnterOptions } from '@/constants'
+import { settingsProps, themes, languages, timeFormats, sendEnterOptions, smileysOptions } from '@/constants'
 import SelectSetting from '@/components/SelectSetting'
 import RadioSetting from '@/components/RadioSetting'
 import Button from '@/components/Button'
-const { LANGUAGE, THEME, TIME_FORMAT, USER_NAME, SEND_ENTER } = settingsProps
+const { LANGUAGE, THEME, TIME_FORMAT, USER_NAME, SEND_ENTER, SMILEYS } = settingsProps
 
 const Settings: React.FunctionComponent<{bodyHeight:number}> = ({ bodyHeight }) => {
   const { t } = useTranslation()
@@ -42,6 +42,17 @@ const Settings: React.FunctionComponent<{bodyHeight:number}> = ({ bodyHeight }) 
       text: upperFirst(t(value))
     }))
   }
+  const smileysProps = {
+    storageKey: SMILEYS,
+    label: upperFirst(t('replaceSmileys')),
+    value: settings[SMILEYS],
+    useChange: (value:string) => updateSettings[SMILEYS](value),
+
+    options: smileysOptions.map(value => ({
+      value,
+      text: upperFirst(t(value))
+    }))
+  }
   const languageProps = {
     storageKey: LANGUAGE,
     label: upperFirst(t('language')),
@@ -72,6 +83,7 @@ const Settings: React.FunctionComponent<{bodyHeight:number}> = ({ bodyHeight }) 
             <RadioSetting {...timeFormatProps} />
             <RadioSetting {...themeProps} />
             <RadioSetting {...sendEnterProps} />
+            <RadioSetting {...smileysProps} />
             <SelectSetting {...languageProps} />
           </div>
           <footer ref={footerRef} className='sticky sticky-bottom centered'>

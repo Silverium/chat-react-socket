@@ -7,19 +7,22 @@ export const settingsProps: SettingsProps = {
   SEND_ENTER: 'sendEnter',
   THEME: 'theme',
   TIME_FORMAT: 'timeFormat',
-  USER_NAME: 'userName'
+  USER_NAME: 'userName',
+  SMILEYS: 'smileys'
 }
 
 export const themes = ['light', 'dark']
 export const languages = ['en', 'es']
 export const timeFormats = ['12h', '24h']
 export const sendEnterOptions = ['true', 'false']
+export const smileysOptions = ['true', 'false']
 
 export const availableSettings = {
   [settingsProps.LANGUAGE]: languages,
   [settingsProps.SEND_ENTER]: sendEnterOptions,
   [settingsProps.THEME]: themes,
   [settingsProps.TIME_FORMAT]: timeFormats,
+  [settingsProps.SMILEYS]: smileysOptions,
   [settingsProps.USER_NAME]: ''
 }
 
