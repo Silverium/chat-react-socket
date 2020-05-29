@@ -67,7 +67,7 @@ const App: React.FunctionComponent<{}> = function () {
     settings: <Settings {...{ bodyHeight }} />
   }
   const timeFormatter = getTimeFormatter(settings[settingsProps.TIME_FORMAT])
-
+  // TODO: add https://reactjs.org/docs/animation.html to transition elements coming in and out
   return (
     <SettingsContext.Provider value={{ settings, updateSettings, resetSettings, timeFormatter }}>
       <div className={`App__wrapper themes-${settings.theme}`}>

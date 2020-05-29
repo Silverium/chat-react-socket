@@ -52,9 +52,9 @@ Built in a node.js server with socket.io implementing a frontend in React 16.
 ## Optional features
 
 - [x] Chat box - smiles support
-- [ ] Chat box - link parser => youtube
-- [ ] Chat box - link parser => images
-- [ ] Chat box - link parser => generic links
+- [x] Chat box - link parser => youtube
+- [x] Chat box - link parser => images
+- [x] Chat box - link parser => generic links
 - [x] Chat tab - unread messages count
 - [x] Settings - language selection
 

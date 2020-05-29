@@ -34,6 +34,7 @@ body {
     color: white;
   }
 
+
   &-light {
     background-color: ghostwhite;
     color: black;
@@ -58,6 +59,7 @@ ul {
     text-align: left;
   }
 }
+
 /// fix autoZoom of iOS devices
 select,
 select:focus,
@@ -65,4 +67,8 @@ input[type='text'],
 input[type='number'],
 textarea {
   font-size: 16px;
+}
+
+a {
+  color: inherit;
 }
