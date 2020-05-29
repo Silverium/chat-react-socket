@@ -4,13 +4,14 @@ import path from 'path'
 import { eventNames } from '../src/constants'
 import { SocketMessage } from '../src/socket' // eslint-disable-line no-unused-vars
 import express from 'express'
+import { MAX_MESSAGES } from './settings'
 const app = express()
 const server = createServer(app)
 const io = require('socket.io')(server)
 export const connectedClients = new Map()
 app.use(express.static(path.join(__dirname, '../dist')))
 
-app.get('/', (req:any, res:any) => res.sendFile(path.join(__dirname, '../dist/index.html')))
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, '../dist/index.html')))
 app.get('/public/locales/:lng/:file', (req, res) => {
   const { lng, file } = req.params
   res.sendFile(path.join(__dirname, '../public/locales', lng, file))
@@ -39,6 +40,7 @@ export const onSetName = (client: Socket, io: Server) => (name:string) => {
 export const onMessage = (client: Socket, io: Server) => (msgProps:{msg: string; userName:string}) => {
   const msgObject = { id: client.id, ...msgProps, timestamp: Date.now() }
   chatHistory.push(msgObject)
+  if (chatHistory.length > MAX_MESSAGES) chatHistory.shift()
   io.emit(eventNames.MESSAGE, msgObject)
 }
 export const onChatHistory = (client: Socket) => () => {
