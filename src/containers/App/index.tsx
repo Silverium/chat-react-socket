@@ -72,9 +72,7 @@ const App: React.FunctionComponent<{}> = function () {
     <SettingsContext.Provider value={{ settings, updateSettings, resetSettings, timeFormatter }}>
       <div className={`App__wrapper themes-${settings.theme}`}>
         <NavBar tabs={appTabs} {...{ activeTab, onTabSelect, unreadMsg, onHeightChange }} />
-        <section className='App__content '>
-          {APP_CONTENT[activeTab]}
-        </section>
+        {APP_CONTENT[activeTab]}
       </div>
     </SettingsContext.Provider>
   )
