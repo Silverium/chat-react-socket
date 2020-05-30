@@ -58,6 +58,12 @@ Built in a node.js server with socket.io implementing a frontend in React 16.
 - [x] Chat tab - unread messages count
 - [x] Settings - language selection
 
+## Extra features
+- [x] Settings - embed youtube links
+- [x] Settings - embed images links
+- [x] Settings - smileys parser
+
+
 ## Steps taken to create this app
 
 - Init git project

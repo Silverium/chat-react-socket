@@ -3,67 +3,56 @@ import { useTranslation } from 'react-i18next'
 import upperFirst from 'lodash-es/upperFirst'
 
 import { SettingsContext } from '@/context/settings'
-import { settingsProps, themes, languages, timeFormats, sendEnterOptions, smileysOptions } from '@/constants'
+import {
+  availableSettings,
+  settingsProps
+} from '@/constants'
 import SelectSetting from '@/components/SelectSetting'
 import RadioSetting from '@/components/RadioSetting'
 import Button from '@/components/Button'
-const { LANGUAGE, THEME, TIME_FORMAT, USER_NAME, SEND_ENTER, SMILEYS } = settingsProps
-
+const {
+  EMBED_IMAGES,
+  EMBED_YOUTUBE,
+  LANGUAGE,
+  SEND_ENTER,
+  REPLACE_SMILEYS,
+  THEME,
+  TIME_FORMAT,
+  USER_NAME
+} = settingsProps
+interface GetSettingsProps {
+  key: string;
+  constants: {
+    availableSettings: {[key: string] : string[]};
+    settings: {[key: string]: string}
+    updateSettings: { [key: string]: (key:string)=> void}
+    t: (key:string)=> string
+    upperFirst: (key:string)=> string
+  }
+}
+const getSettingsProps = (key: GetSettingsProps['key'], { availableSettings, settings, updateSettings, t, upperFirst }: GetSettingsProps['constants']) => ({
+  storageKey: key,
+  label: upperFirst(t(key)),
+  value: settings[key],
+  useChange: (value:string) => updateSettings[key](value),
+  options: availableSettings[key].map((value: string) => ({
+    value,
+    text: upperFirst(t(value))
+  }))
+})
 const Settings: React.FunctionComponent<{bodyHeight:number}> = ({ bodyHeight }) => {
   const { t } = useTranslation()
   const { settings, updateSettings } = React.useContext(SettingsContext)
-  const timeFormatProps = {
-    storageKey: TIME_FORMAT,
-    label: upperFirst(t('clockDisplay')),
-    value: settings[TIME_FORMAT],
-    useChange: (value:string) => updateSettings[TIME_FORMAT](value),
-    options: timeFormats.map(value => ({
-      value,
-      text: upperFirst(t(value))
-    }))
-  }
-  const themeProps = {
-    storageKey: THEME,
-    label: upperFirst(t('interfaceTheme')),
-    useChange: (value: string) => updateSettings[THEME](value),
-    value: settings[THEME],
-    options: themes.map(value => ({
-      value,
-      text: upperFirst(t(value))
-    }))
-  }
-  const sendEnterProps = {
-    storageKey: SEND_ENTER,
-    label: upperFirst(t('sendEnter')),
-    value: settings[SEND_ENTER],
-    useChange: (value:string) => updateSettings[SEND_ENTER](value),
-    options: sendEnterOptions.map(value => ({
-      value,
-      text: upperFirst(t(value))
-    }))
-  }
-  const smileysProps = {
-    storageKey: SMILEYS,
-    label: upperFirst(t('replaceSmileys')),
-    value: settings[SMILEYS],
-    useChange: (value:string) => updateSettings[SMILEYS](value),
+  const constants = { availableSettings, settings, updateSettings, t, upperFirst }
 
-    options: smileysOptions.map(value => ({
-      value,
-      text: upperFirst(t(value))
-    }))
-  }
-  const languageProps = {
-    storageKey: LANGUAGE,
-    label: upperFirst(t('language')),
-    value: settings[LANGUAGE],
-    useChange: (value:string) => updateSettings[LANGUAGE](value),
+  const timeFormatProps = getSettingsProps(TIME_FORMAT, constants)
+  const themeProps = getSettingsProps(THEME, constants)
+  const sendEnterProps = getSettingsProps(SEND_ENTER, constants)
+  const embedImagesProps = getSettingsProps(EMBED_IMAGES, constants)
+  const embedYoutubeProps = getSettingsProps(EMBED_YOUTUBE, constants)
+  const smileysProps = getSettingsProps(REPLACE_SMILEYS, constants)
+  const languageProps = getSettingsProps(LANGUAGE, constants)
 
-    options: languages.map(value => ({
-      value,
-      text: upperFirst(t(value))
-    }))
-  }
   const [preferencesHeight, setPreferencesHeight] = React.useState(0)
 
   const footerRef = React.useRef(null)
@@ -84,6 +73,8 @@ const Settings: React.FunctionComponent<{bodyHeight:number}> = ({ bodyHeight }) 
             <RadioSetting {...themeProps} />
             <RadioSetting {...sendEnterProps} />
             <RadioSetting {...smileysProps} />
+            <RadioSetting {...embedYoutubeProps} />
+            <RadioSetting {...embedImagesProps} />
             <SelectSetting {...languageProps} />
           </div>
           <footer ref={footerRef} className='sticky sticky-bottom centered'>

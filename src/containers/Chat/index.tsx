@@ -27,7 +27,13 @@ const Chat: React.FunctionComponent<{messagesList:SocketMessage[], bodyHeight: n
               <li key={i} className={`m-3 ${socket.id === id ? 'text-right' : 'text-left'}`}>
                 <div className='my-2'>{userName || id}, {timeFormatter(timestamp)}</div>
                 <div className={`d-inline-block p-1 rounded-4 border-1 border-color-${socket.id === id ? 'primary' : settings[settingsProps.THEME]} ${socket.id === id ? 'ml-5' : 'mr-5'}`}>
-                  <MsgFormatter {...{ msg, hasSmileys: settings[settingsProps.SMILEYS] === stringBooleans.true }} />
+                  <MsgFormatter {...{
+                    msg,
+                    hasSmileys: settings[settingsProps.REPLACE_SMILEYS] === stringBooleans.true,
+                    hasYoutubeLinks: settings[settingsProps.EMBED_YOUTUBE] === stringBooleans.true,
+                    hasImages: settings[settingsProps.EMBED_IMAGES] === stringBooleans.true
+                  }}
+                  />
                 </div>
               </li>
             ))}
