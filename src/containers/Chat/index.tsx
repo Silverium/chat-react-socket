@@ -5,7 +5,7 @@ import {
 } from '@/socket'
 
 import { SettingsContext } from '@/context/settings'
-import { settingsProps } from '@/constants'
+import { settingsProps, stringBooleans } from '@/constants'
 import MessageForm from '@/components/MessageForm'
 import MsgFormatter from '@/components/MsgFormatter'
 
@@ -27,7 +27,7 @@ const Chat: React.FunctionComponent<{messagesList:SocketMessage[], bodyHeight: n
               <li key={i} className={`m-3 ${socket.id === id ? 'text-right' : 'text-left'}`}>
                 <div className='my-2'>{userName || id}, {timeFormatter(timestamp)}</div>
                 <div className={`d-inline-block p-1 rounded-4 border-1 border-color-${socket.id === id ? 'primary' : settings[settingsProps.THEME]} ${socket.id === id ? 'ml-5' : 'mr-5'}`}>
-                  <MsgFormatter {...{ msg, hasSmileys: settings[settingsProps.SMILEYS] === 'true' }} />
+                  <MsgFormatter {...{ msg, hasSmileys: settings[settingsProps.SMILEYS] === stringBooleans.true }} />
                 </div>
               </li>
             ))}

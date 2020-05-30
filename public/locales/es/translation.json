@@ -10,6 +10,8 @@
   "false": "falso",
   "language": "idioma",
   "light": "claro",
+  "off": "desactivado",
+  "on": "activado",
   "replaceSmileys": "Reemplazar smileys 😀",
   "reset": "restablecer",
   "settings": "ajustes",

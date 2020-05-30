@@ -10,6 +10,8 @@
   "interfaceTheme": "interface theme",
   "language": "language",
   "light": "light",
+  "off": "off",
+  "on": "on",
   "replaceSmileys": "replace smileys 😀",
   "reset": "reset",
   "sendEnter": "send with enter",

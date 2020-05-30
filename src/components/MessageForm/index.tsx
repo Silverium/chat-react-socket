@@ -4,7 +4,7 @@ import Button from '@/components/Button'
 import SendIcon from '@/components/SendIcon'
 import { SettingsContext } from '@/context/settings'
 import { sendMessage } from '@/socket'
-import { settingsProps } from '@/constants'
+import { settingsProps, stringBooleans } from '@/constants'
 
 const MessageForm: React.ForwardRefRenderFunction<HTMLElement, {}> = (props, ref): JSX.Element => {
   const [msg, setMsg] = React.useState('')
@@ -14,12 +14,12 @@ const MessageForm: React.ForwardRefRenderFunction<HTMLElement, {}> = (props, ref
     setMsg('')
   }
   const { settings } = React.useContext(SettingsContext)
-  const isSendEnterActivated = settings[settingsProps.SEND_ENTER] === 'true'
+  const isSendEnterOn = settings[settingsProps.SEND_ENTER] === stringBooleans.true
 
   const onKeyPress = (event: React.KeyboardEvent) => {
     const { key } = event
     const userName = settings[settingsProps.USER_NAME]
-    if (isSendEnterActivated && key === 'Enter') send({ msg, userName })
+    if (isSendEnterOn && key === 'Enter') send({ msg, userName })
   }
 
   return (

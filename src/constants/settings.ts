@@ -10,12 +10,17 @@ export const settingsProps: SettingsProps = {
   USER_NAME: 'userName',
   SMILEYS: 'smileys'
 }
+export const stringBooleans = {
+  true: 'on',
+  false: 'off'
+}
+export const booleanOptions = [stringBooleans.true, stringBooleans.false]
 
 export const themes = ['light', 'dark']
 export const languages = ['en', 'es']
 export const timeFormats = ['12h', '24h']
-export const sendEnterOptions = ['true', 'false']
-export const smileysOptions = ['true', 'false']
+export const sendEnterOptions = booleanOptions
+export const smileysOptions = booleanOptions
 
 export const availableSettings = {
   [settingsProps.LANGUAGE]: languages,
