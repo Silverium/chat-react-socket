@@ -35,7 +35,6 @@ const MsgFormatter: React.FunctionComponent<MsgFormatterProps> = ({ msg, hasSmil
     })
     if (hasSmileys) {
       result = replaceStringWithEmoji(result)
-      console.log('%cvariable: result please', 'background-color: lime;', result)
     }
     return result
   }
