@@ -1,6 +1,5 @@
 import React from 'react'
 import omit from 'lodash-es/omit'
-// import { useLocal } from '@/effects/useLocal'
 
 export interface SelectSettingOption {
   value: string;

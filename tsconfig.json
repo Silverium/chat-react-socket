@@ -12,11 +12,16 @@
     "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"]
-   }
+    },
+    "typeRoots": [
+      "src/@types",
+      "node_modules/@types"
+    ]
   },
   "include": [
     "**/*"
-  ],"exclude": [
+  ],
+  "exclude": [
     "node_modules",
     "**/*.spec.ts"
   ]

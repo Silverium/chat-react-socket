@@ -2,7 +2,7 @@ export interface SettingsProps {
   [key: string]: string;
 }
 
-export const settingsProps: SettingsProps = {
+export const settingsProps = {
   LANGUAGE: 'language',
   SEND_ENTER: 'sendEnter',
   THEME: 'theme',

@@ -1,18 +1,17 @@
-/* global localStorage */
+/* global IS_LOCAL */ // from webpack.config.js
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import Backend from 'i18next-xhr-backend'
 import { settingsProps } from './constants'
 
 const { LANGUAGE } = settingsProps
-console.info(process)
 i18n
   .use(Backend)
   .use(initReactI18next)
   .init({
-    debug: true,
+    debug: IS_LOCAL,
 
-    lng: localStorage.getItem(LANGUAGE) || 'en',
+    lng: window.localStorage.getItem(LANGUAGE) || 'en',
     fallbackLng: 'en',
     whitelist: ['en', 'es'],
 

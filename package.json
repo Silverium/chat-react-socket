@@ -12,7 +12,7 @@
     "profile": "webpack --config webpack.config.js --mode production --profile --progress",
     "lint": "standard src/**/*.tsx src/**/*.ts src/**/*.jsx src/**/*.js ./index.tsx --env jest",
     "server": "ts-node -O '{\"module\":\"commonJs\"}' ./server/index.ts",
-    "dev": "webpack --open --config webpack.config.js --watch --mode development",
+    "dev": "webpack --env.NODE_ENV=local --open --config webpack.config.js --watch --mode development",
     "start": "concurrently \"yarn dev\" \"yarn server\"",
     "test": "jest",
     "runme": "yarn build && yarn server"
