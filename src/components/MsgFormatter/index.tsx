@@ -19,7 +19,7 @@ const MsgFormatter: React.FunctionComponent<MsgFormatterProps> = ({ msg, hasSmil
         exclude: false,
         specialTransform: compact([
           hasImages && {
-            test: /.*\.(png|jpg|gif)$/,
+            test: /.*\.(png|jpe?g|gif)$/,
             transform: s => `<img src="${s.startsWith('https://') ? s : `https://${s}`}">`
 
           },
