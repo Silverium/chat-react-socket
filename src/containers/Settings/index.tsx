@@ -2,6 +2,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import upperFirst from 'lodash-es/upperFirst'
 
+import { getSettingsProps } from '@/helpers'
 import { SettingsContext } from '@/context/settings'
 import {
   availableSettings,
@@ -20,26 +21,7 @@ const {
   TIME_FORMAT,
   USER_NAME
 } = settingsProps
-interface GetSettingsProps {
-  key: string;
-  constants: {
-    availableSettings: {[key: string] : string[]};
-    settings: {[key: string]: string}
-    updateSettings: { [key: string]: (key:string)=> void}
-    t: (key:string)=> string
-    upperFirst: (key:string)=> string
-  }
-}
-const getSettingsProps = (key: GetSettingsProps['key'], { availableSettings, settings, updateSettings, t, upperFirst }: GetSettingsProps['constants']) => ({
-  storageKey: key,
-  label: upperFirst(t(key)),
-  value: settings[key],
-  useChange: (value:string) => updateSettings[key](value),
-  options: availableSettings[key].map((value: string) => ({
-    value,
-    text: upperFirst(t(value))
-  }))
-})
+
 const Settings: React.FunctionComponent<{bodyHeight:number}> = ({ bodyHeight }) => {
   const { t } = useTranslation()
   const { settings, updateSettings } = React.useContext(SettingsContext)

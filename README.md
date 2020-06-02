@@ -2,7 +2,11 @@
 
 ## What is it?
 
-This is a humble exercise consisting in a **chat app**
+This is a humble exercise consisting in a **chat app**, given a set of constraints:
+- No layout libraries (material, bootstrap, etc)
+- No *create-react-app* (that would automagically set up webpack and compilation processes)
+- No unnecessary libraries (like babel)
+- Use TypeScript
 
 ## How does it work?
 
