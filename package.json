@@ -8,7 +8,7 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "build": "webpack --config webpack.config.js --mode production",
+    "build": "webpack --env.NODE_ENV=production --config webpack.config.js --mode production",
     "profile": "webpack --config webpack.config.js --mode production --profile --progress",
     "lint": "standard src/**/*.tsx src/**/*.ts src/**/*.jsx src/**/*.js ./index.tsx --env jest",
     "server": "ts-node -O '{\"module\":\"commonJs\"}' ./server/index.ts",

@@ -3,7 +3,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const webpack = require('webpack')
 const path = require('path')
 
-module.exports = env => {
+module.exports = (env = {}) => {
   return {
     entry: {
       main: './index.tsx'
