@@ -17,7 +17,8 @@ module.exports = (env = {}) => {
       new CleanWebpackPlugin(),
       new webpack.DefinePlugin({ IS_LOCAL: env.NODE_ENV === 'local' }),
       new HtmlWebpackPlugin({
-        template: './index.html'
+        template: './index.html',
+        favicon: './public/assets/sun.svg'
       })
     ],
     resolve: {
