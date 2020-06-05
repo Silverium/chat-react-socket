@@ -17,8 +17,17 @@ module.exports = (env = {}) => {
       new CleanWebpackPlugin(),
       new webpack.DefinePlugin({ IS_LOCAL: env.NODE_ENV === 'local' }),
       new HtmlWebpackPlugin({
-        template: './index.html',
-        favicon: './public/assets/sun.svg'
+        templateContent: '<div id="chatApp"></div>',
+        title: 'Chat!',
+        favicon: './public/assets/sun.svg',
+        meta: {
+          viewport: {
+            name: 'viewport',
+            content: 'width=device-width, initial-scale=1, maximum-scale=1'
+          },
+          charset: 'utf-8',
+          author: 'soldeplatadeveloper@gmail.com'
+        }
       })
     ],
     resolve: {
